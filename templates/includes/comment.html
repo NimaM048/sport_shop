@@ -1,0 +1,251 @@
+<!-- tabs:contents:tabThree -->
+{% load static %}
+{% load humanize %}
+{% load my_tags %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<div class="bg-background rounded-3xl p-5" id="tabThree">
+    <!-- section:title -->
+    <div class="flex items-center gap-3 mb-5">
+        <div class="flex items-center gap-1">
+            <div class="w-1 h-1 bg-foreground rounded-full"></div>
+            <div class="w-2 h-2 bg-foreground rounded-full"></div>
+        </div>
+        <div class="font-black text-foreground">دیدگاه و پرسش</div>
+    </div>
+    <!-- end section:title -->
+
+    <!-- course:comments:form:wrapper -->
+    <div class="bg-background border border-border rounded-3xl p-5 mb-5">
+        <div class="flex items-center gap-3 mb-5">
+            <div class="flex items-center gap-1">
+                <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                <div class="w-2 h-2 bg-foreground rounded-full"></div>
+            </div>
+            <div class="font-black text-xs text-foreground">
+                ارسال دیدگاه یا پرسش
+            </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 mb-5">
+            <div class="flex items-center gap-3 sm:w-auto w-full">
+                <div
+                        class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
+                    {% if request.user.profile_picture %}
+                        <img src="{{ request.user.profile_picture.url }}"
+                             class="w-full h-full object-cover"
+                             alt="..."/>
+                    {% else %}
+                        <!-- You can add a default image or a placeholder here -->
+                        <img src="{% static 'images/avatars/download.png' %}"
+                             class="w-full h-full object-cover"
+                             alt="..."/>
+                    {% endif %}
+                    class="w-full h-full object-cover" alt="..."/>
+                </div>
+                <div class="flex flex-col items-start space-y-1">
+                    <a href="#"
+                       class="line-clamp-1 font-semibold text-sm text-foreground hover:text-primary">
+                        {{ request.user.fullname }}</a>
+                </div>
+            </div>
+        </div>
+        <!-- course:comments:form -->
+        <form id="comment-form" class="flex flex-col space-y-5" method="post">
+            {% csrf_token %}
+            <textarea   name="text" id="text" rows="10"
+                      class="form-textarea w-full !ring-0 !ring-offset-0 bg-secondary border-0 focus:border-border border-border rounded-xl text-sm text-foreground p-5"
+                      placeholder="متن مورد نظر خود را وارد کنید ..."></textarea>
+            <button type="submit"
+                    class="submit-comment h-10 inline-flex items-center justify-center gap-1 bg-primary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4 mr-auto">
+                <span class="font-semibold text-sm">ثبت دیدگاه یا پرسش</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                    <path fill-rule="evenodd"
+                          d="M14.78 14.78a.75.75 0 0 1-1.06 0L6.5 7.56v5.69a.75.75 0 0 1-1.5 0v-7.5A.75.75 0 0 1 5.75 5h7.5a.75.75 0 0 1 0 1.5H7.56l7.22 7.22a.75.75 0 0 1 0 1.06Z"
+                          clip-rule="evenodd"></path>
+                </svg>
+            </button>
+        </form>
+    </div>
+    <!-- end course:comments:form:wrapper -->
+
+    <!-- course:comments:wrapper -->
+    <div class="space-y-3">
+        <!-- course:comment -->
+        <div class="space-y-3">
+            {% for comment in active_comments %}
+                <div class="bg-background border border-border rounded-3xl space-y-3 p-5">
+                    <div class="flex sm:flex-nowrap flex-wrap sm:flex-row flex-col sm:items-center sm:justify-between gap-5 border-b border-border pb-3">
+                        <div class="flex items-center gap-3">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
+                                {% if comment.user.profile_picture %}
+                                    <img src="{{ comment.user.profile_picture.url }}"
+                                         class="w-full h-full object-cover"
+                                         alt="{{ comment.user.fullname }}"/>
+                                {% else %}
+                                    <img src="{% static 'images/avatars/download.png' %}"
+                                         class="w-full h-full object-cover"
+                                         alt="..."/>
+                                {% endif %}
+                            </div>
+                            <div class="flex flex-col items-start space-y-1">
+                                <a href="#"
+                                   class="line-clamp-1 font-semibold text-sm text-foreground hover:text-primary">{{ comment.user.fullname }}</a>
+                                <span class="text-xs text-muted">{{ comment.created_at|to_jalali }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-muted">{{ comment.text }}</p>
+
+                    <!-- Replies section -->
+                    <div class="relative before:content-[''] before:absolute before:-top-3 before:right-8 before:w-px before:h-[calc(100%-24px)] before:bg-border after:content-[''] after:absolute after:bottom-9 after:right-8 after:w-8 after:h-px after:bg-border space-y-3 pr-16 ml-5">
+                        {% for reply in comment.active_replies %}
+                            <div class="flex sm:flex-nowrap flex-wrap sm:flex-row flex-col sm:items-center sm:justify-between gap-5 pt-3 border-t border-border">
+                                <div class="flex items-center gap-3">
+                                    <div class="flex-shrink-0 w-8 h-8 rounded-full overflow-hidden">
+                                        {% if reply.user.profile_picture %}
+                                            <img src="{{ reply.user.profile_picture.url }}"
+                                                 class="w-full h-full object-cover"
+                                                 alt="{{ reply.user.fullname }}"/>
+                                        {% else %}
+                                            <img src="{% static 'images/avatars/download.png' %}"
+                                                 class="w-full h-full object-cover"
+                                                 alt="..."/>
+                                        {% endif %}
+                                    </div>
+                                    <div class="flex flex-col items-start space-y-1">
+                                        <a href="#"
+                                           class="line-clamp-1 font-semibold text-sm text-foreground hover:text-primary">{{ reply.user.fullname }}</a>
+                                        <span class="text-xs text-muted">{{ reply.created_at|to_jalali }}</span>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-muted break-words">{{ reply.text }}</p>
+                            </div>
+                        {% endfor %}
+                        <!-- Reply Form -->
+                        <form id="reply-form-{{ comment.pk }}" action="" method="post" class="text-right">
+                            {% csrf_token %}
+                            <input type="hidden" name="comment_id" value="{{ comment.pk }}">
+                            {{ reply_form.as_p }}
+                            <button type="submit"
+                                    class="h-10 inline-flex items-center justify-center gap-1 bg-primary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4 mr-auto">
+                                پاسخ
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <style>
+        .break-words {
+            word-wrap: break-word;
+            word-break: break-word;
+        }
+
+        .success-message {
+            position: relative;
+            z-index: 1000;
+            text-align: center;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+    </style>
+    <!-- course:comments:wrapper -->
+</div>
+<!-- end tabs:contents:tabThree -->
+
+
+<script>
+    $(document).ready(function () {
+        // Handle comment form submission
+        $('#comment-form').on('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            var formData = $(this).serialize(); // Serialize the form data
+            var commentText = $('#text').val().trim(); // Get the comment text and trim whitespace
+
+            if (commentText === "") {
+                showErrorMessage('لطفاً دیدگاه خود را وارد کنید.'); // Show error message if the comment is empty
+                return; // Stop the form from submitting
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "home:course_detail" pk=object.pk %}', // Update with your URL
+                data: formData,
+                success: function (response) {
+                    $('#tabThree').html($(response).find('#tabThree').html());
+                    showSuccessMessage('نظر شما با موفقیت ثبت شد');
+                },
+                error: function (xhr, status, error) {
+                    console.error("An error occurred: " + error);
+                }
+            });
+        });
+
+        // Handle reply form submission
+        $('form[id^="reply-form-"]').on('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            var formData = $(this).serialize(); // Serialize the form data
+            var replyText = $(this).find('textarea').val().trim(); // Get the reply text and trim whitespace
+
+            if (replyText === "") {
+                showErrorMessage('لطفاً پاسخ خود را وارد کنید.'); // Show error message if the reply is empty
+                return; // Stop the form from submitting
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '{% url "home:course_detail" pk=object.pk %}', // Update with your URL
+                data: formData,
+                success: function (response) {
+                    $('#tabThree').html($(response).find('#tabThree').html());
+                    showSuccessMessage('نظر شما با موفقیت ثبت شد');
+                },
+                error: function (xhr, status, error) {
+                    console.error("An error occurred: " + error);
+                }
+            });
+        });
+
+        // Function to show the success message as a notification
+        function showSuccessMessage(message) {
+            var successMessage = $('<div></div>')
+                .addClass('success-message bg-primary text-primary-foreground rounded-full p-3 mb-3')
+                .text(message)
+                .css({
+                    position: 'fixed',
+                    top: '-100px',
+                    right: '50%',
+                    transform: 'translateX(50%)',
+                    zIndex: 9999,
+                    width: 'auto',
+                    padding: '10px 30px',
+                    borderRadius: '30px',
+                    boxShadow: '0 4px 15px rgba(0, 0, 0, 0.2)',
+                    background: 'rgb(#ffffff)',
+                    color: '#ffffff',
+                    fontWeight: 'bold',
+                    fontSize: '16px',
+                    textAlign: 'center',
+                    letterSpacing: '1px'
+                })
+                .appendTo('body')
+                .animate({top: '20px'}, 500) // Slide down into view
+                .hide()
+                .fadeIn();
+
+            // Automatically fade out and remove the message after 3 seconds
+            setTimeout(function () {
+                successMessage.fadeOut(function () {
+                    $(this).animate({top: '-100px'}, 500, function () {
+                        $(this).remove();
+                    });
+                });
+            }, 3000);
+        }
+    });
+</script>

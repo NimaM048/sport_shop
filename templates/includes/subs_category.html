@@ -1,0 +1,11 @@
+{% for category in category.subs.all %}
+    <li class="w-1/2">
+        <a href="#"
+           class="flex items-center gap-2 text-muted before:content-[''] before:inline-block before:w-1 before:h-1 before:bg-border before:rounded-full transition-colors hover:text-primary hover:before:bg-primary">
+            <span class="font-semibold text-sm">{{ category.title }}</span>
+            {% if category.subs.all %}
+                {% include 'includes/subs_category.html' %}
+            {% endif %}
+        </a>
+    </li>
+{% endfor %}

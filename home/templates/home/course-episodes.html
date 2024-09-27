@@ -1,0 +1,378 @@
+{% load static %}
+{% include 'includes/header_reference.html' %}
+<body>
+
+<div class="flex flex-col min-h-screen bg-background">
+    <!-- header -->
+    {% include 'includes/header.html' %}
+    <!-- end header -->
+
+    <main class="flex-auto py-5">
+        <!-- container -->
+        <div class="max-w-7xl space-y-14 px-4 mx-auto">
+            <div class="flex lg:flex-nowrap flex-wrap items-start gap-5">
+                <div class="lg:w-8/12 w-full">
+                    <!-- section:title -->
+                    <div class="flex items-center gap-5 mb-5">
+                        <!-- back to course -->
+                        <a href="{% url 'home:course_detail' seriesmodel.id %}"
+                           class="flex items-center justify-center w-12 h-12 bg-primary text-primary-foreground rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="m15 15 6-6m0 0-6-6m6 6H9a6 6 0 0 0 0 12h3"/>
+                            </svg>
+                        </a>
+                        <div class="flex flex-col space-y-2">
+                            <!-- episode:title -->
+                            <span class="font-black text-2xl text-primary">معرفی دوره</span>
+                            <!-- course:title -->
+                            <span class="font-semibold text-xs text-muted">{{ seriesmodel.title }}</span>
+                        </div>
+                    </div>
+                    <!-- end section:title -->
+
+                    <!-- episode:video:wrapper -->
+                    {% if request.user.is_authenticated %}
+                    <div class="relative max-w-full rounded-3xl overflow-hidden z-10">
+                        <video id="episode-video" class="js-player" playsinline controls
+                               data-poster="{{ seriesmodel.image.url }}">
+                            <!-- Source will be set dynamically with JavaScript -->
+                            <source id="video-source" src="" type="video/mp4"/>
+                        </video>
+                    </div>
+                    {% else %}
+                        <a href="{% url 'register:pass_login' %}">
+                    <p class="text-center text-red-500">
+                        برای دیدن ویدیو لطفا ابتدا در سایت لاگین کنید.
+                    </p>
+                        </a>
+                    {% endif %}
+                    <!-- end episode:video:wrapper -->
+                </div>
+                <div class="lg:w-4/12 w-full lg:sticky lg:top-24 space-y-8">
+                    <div class="bg-background rounded-2xl">
+                        <!-- course:sections:wrapper -->
+                        <div class="flex flex-col space-y-1">
+                            <!-- course:section:accordion -->
+                            {% for season in seasons %}
+                                <div class="w-full space-y-1" x-data="{ open: false }">
+                                    <button type="button"
+                                            class="w-full h-14 flex items-center justify-between gap-x-2 relative bg-secondary rounded-2xl transition hover:text-foreground px-5"
+                                            x-bind:class="open ? 'text-foreground' : 'text-muted'"
+                                            x-on:click="open = !open">
+                        <span class="flex items-center gap-3 text-right">
+                            <span class="font-semibold text-xs line-clamp-1">
+                                فصل {{ season.number }} - {{ season.title }}
+                            </span>
+                        </span>
+                                        <span class="" x-bind:class="open ? 'rotate-180' : ''">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                 stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                      d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+                            </svg>
+                        </span>
+                                    </button>
+
+                                    <div class="flex flex-col relative" x-show="open">
+                                        <div class="bg-background border border-border rounded-2xl space-y-1 overflow-hidden">
+                                            {% for episode in season.episodes.all %}
+                                                <div class="flex sm:flex-nowrap flex-wrap items-center gap-3 bg-primary !text-primary-foreground sm:h-12 p-5"
+                                                <a href="#"
+                                                   onclick="document.getElementById('video-source').src = '{{ episode.video_file.url }}'; document.getElementById('episode-video').load()">
+                                                    <!-- Add a click event to play the specific episode -->
+                                                    <span class="text-xs">{{ episode.episode_number }}</span>
+                                                    <div class="w-1 h-1 bg-muted-foreground rounded-full"></div>
+                                                    <a href="#"
+                                                       class="font-semibold text-xs text-primary-foreground line-clamp-1 transition-all hover:underline">
+                                                        {{ episode.title }}
+                                                    </a>
+                                                    <div class="flex items-center justify-end gap-3 sm:w-auto w-full mr-auto">
+            <span class="flex items-center gap-1">
+                <span class="text-xs">{{ episode.duration }}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+                </svg>
+            </span>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                    </div>
+                                </div>
+                                </div>
+                            {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <script>
+                function playEpisode(videoURL) {
+                    const videoSource = document.getElementById('video-source');
+                    const videoPlayer = document.getElementById('episode-video');
+
+                    // Update the video source with the selected episode's URL
+                    videoSource.src = videoURL;
+                    videoPlayer.load();  // Load the new video
+                    videoPlayer.play();   // Start playing the video
+                }</script>
+            <!-- end course:sections:wrapper -->
+        </div>
+</div>
+</div>
+
+</div>
+</div>
+<!-- end course:section:accordion -->
+</div>
+<!-- end course:sections:wrapper -->
+</div>
+</div>
+</div>
+<div class="flex md:flex-nowrap flex-wrap items-start gap-5">
+    <div class="md:w-8/12 w-full">
+        <div class="relative">
+            <div class="space-y-10">
+                <!-- tabs container -->
+                <div class="space-y-5"
+                     x-data="{ activeTab: 'tabOne', scroll: function() { document.getElementById(this.activeTab).scrollIntoView({ behavior: 'smooth' }) } }">
+                    <div class="sticky top-24 z-10">
+                        <!-- tabs:list-container -->
+                        <div class="relative overflow-x-auto">
+                            <!-- tabs:list -->
+                            <ul
+                                    class="inline-flex gap-2 bg-secondary border border-border rounded-full p-1">
+                                <!-- tabs:list:item -->
+                                <li>
+                                    <button type="button"
+                                            class="flex items-center gap-x-2 relative rounded-full py-2 px-4"
+                                            x-bind:class="activeTab === 'tabOne' ? 'text-foreground bg-background' : 'text-muted'"
+                                            x-on:click="activeTab = 'tabOne'; scroll();">
+                                        <!-- active icon -->
+                                        <span x-show="activeTab === 'tabOne'">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                                 fill="currentColor" class="w-5 h-5">
+                                                                <path
+                                                                        d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z">
+                                                                </path>
+                                                            </svg>
+                                                        </span>
+                                        <!-- end active icon -->
+
+                                        <!-- inactive icon -->
+                                        <span x-show="activeTab !== 'tabOne'">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                 viewBox="0 0 24 24" stroke-width="1.5"
+                                                                 stroke="currentColor" class="w-5 h-5">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125">
+                                                                </path>
+                                                            </svg>
+                                                        </span>
+                                        <!-- end inactive icon -->
+
+                                        <span
+                                                class="font-semibold text-sm whitespace-nowrap">توضیحات</span>
+                                    </button>
+                                </li>
+                                <!-- end tabs:list:item -->
+
+                                <!-- tabs:list:item -->
+                                <li>
+                                    <button type="button"
+                                            class="flex items-center gap-x-2 relative rounded-full py-2 px-4"
+                                            x-bind:class="activeTab === 'tabTwo' ? 'text-foreground bg-background' : 'text-muted'"
+                                            x-on:click="activeTab = 'tabTwo'; scroll();">
+                                        <!-- active icon -->
+                                        <span x-show="activeTab === 'tabTwo'">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                                 fill="currentColor" class="w-5 h-5">
+                                                                <path
+                                                                        d="M3.505 2.365A41.369 41.369 0 0 1 9 2c1.863 0 3.697.124 5.495.365 1.247.167 2.18 1.108 2.435 2.268a4.45 4.45 0 0 0-.577-.069 43.141 43.141 0 0 0-4.706 0C9.229 4.696 7.5 6.727 7.5 8.998v2.24c0 1.413.67 2.735 1.76 3.562l-2.98 2.98A.75.75 0 0 1 5 17.25v-3.443c-.501-.048-1-.106-1.495-.172C2.033 13.438 1 12.162 1 10.72V5.28c0-1.441 1.033-2.717 2.505-2.914Z">
+                                                                </path>
+                                                                <path
+                                                                        d="M14 6c-.762 0-1.52.02-2.271.062C10.157 6.148 9 7.472 9 8.998v2.24c0 1.519 1.147 2.839 2.71 2.935.214.013.428.024.642.034.2.009.385.09.518.224l2.35 2.35a.75.75 0 0 0 1.28-.531v-2.07c1.453-.195 2.5-1.463 2.5-2.915V8.998c0-1.526-1.157-2.85-2.729-2.936A41.645 41.645 0 0 0 14 6Z">
+                                                                </path>
+                                                            </svg>
+                                                        </span>
+                                        <!-- end active icon -->
+
+                                        <!-- inactive icon -->
+                                        <span x-show="activeTab !== 'tabTwo'">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                 viewBox="0 0 24 24" stroke-width="1.5"
+                                                                 stroke="currentColor" class="w-5 h-5">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                      d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155">
+                                                                </path>
+                                                            </svg>
+                                                        </span>
+                                        <!-- end inactive icon -->
+
+                                        <span class="font-semibold text-sm whitespace-nowrap">دیدگاه و
+                                                            پرسش</span>
+                                    </button>
+                                </li>
+                                <!-- end tabs:list:item -->
+                            </ul>
+                            <!-- end tabs:list -->
+                        </div>
+                        <!-- end tabs:list-container -->
+                    </div>
+
+                    <!-- tabs:contents -->
+                    <div class="space-y-8">
+                        <!-- tabs:contents:tabOne -->
+                        <div class="bg-background rounded-3xl p-5" id="tabOne">
+                            <!-- episode:description -->
+                            <div class="description">
+                                <p>
+                                    {{ seriesmodel.description }}
+                                </p>
+                                <h2> {{ seriesmodel.title }}</h2>
+                                <img src="{{ seriesmodel.image.url }}" alt="..."/>
+                                <p>
+                                    {{ seriesmodel.course_extra_des1 }}
+                                </p>
+                                <p>
+                                    {{ seriesmodel.course_extra_des2 }}
+                                </p>
+                                <h3> ساختار{{ seriesmodel.title }}</h3>
+                                <p>
+                                    {{ seriesmodel.built_in }}
+                                </p>
+                            </div>
+                            <!-- end episode:description -->
+                        </div>
+                        <!-- end tabs:contents:tabOne -->
+
+                        <!-- tabs:contents:tabTwo -->
+                        {% include 'includes/comment.html' %}
+                        <!-- end tabs:contents:tabTwo -->
+                    </div>
+                    <!-- end tabs:contents -->
+                </div>
+                <!-- end tabs container -->
+            </div>
+        </div>
+    </div>
+
+    <div class="md:w-4/12 w-full md:sticky md:top-24 md:order-2 -order-1 space-y-8">
+        <div class="grid lg:grid-cols-3 grid-cols-2 gap-5">
+            <div
+                    class="flex flex-col items-center justify-center gap-3 bg-secondary border border-border rounded-2xl cursor-default p-3">
+                                <span
+                                        class="flex items-center justify-center w-12 h-12 bg-background rounded-full text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                         class="w-5 h-5">
+                                        <path fill-rule="evenodd"
+                                              d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                <div class="flex flex-col items-center justify-center text-center space-y-1">
+                    <span class="font-bold text-xs text-muted line-clamp-1">مدت دوره</span>
+                    <span class="font-bold text-sm text-foreground line-clamp-1">{{ total_duration }}</span>
+                </div>
+            </div>
+            <div
+                    class="flex flex-col items-center justify-center gap-3 bg-secondary border border-border rounded-2xl cursor-default p-3">
+                                <span
+                                        class="flex items-center justify-center w-12 h-12 bg-background rounded-full text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                         class="w-5 h-5">
+                                        <path fill-rule="evenodd"
+                                              d="M4.25 2A2.25 2.25 0 0 0 2 4.25v2.5A2.25 2.25 0 0 0 4.25 9h2.5A2.25 2.25 0 0 0 9 6.75v-2.5A2.25 2.25 0 0 0 6.75 2h-2.5Zm0 9A2.25 2.25 0 0 0 2 13.25v2.5A2.25 2.25 0 0 0 4.25 18h2.5A2.25 2.25 0 0 0 9 15.75v-2.5A2.25 2.25 0 0 0 6.75 11h-2.5Zm9-9A2.25 2.25 0 0 0 11 4.25v2.5A2.25 2.25 0 0 0 13.25 9h2.5A2.25 2.25 0 0 0 18 6.75v-2.5A2.25 2.25 0 0 0 15.75 2h-2.5Zm0 9A2.25 2.25 0 0 0 11 13.25v2.5A2.25 2.25 0 0 0 13.25 18h2.5A2.25 2.25 0 0 0 18 15.75v-2.5A2.25 2.25 0 0 0 15.75 11h-2.5Z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                <div class="flex flex-col items-center justify-center text-center space-y-1">
+                    <span class="font-bold text-xs text-muted line-clamp-1">تعداد جلسات</span>
+                    <span class="font-bold text-sm text-foreground line-clamp-1">{{ total_episodes }}</span>
+                </div>
+            </div>
+            <div
+                    class="flex flex-col items-center justify-center gap-3 bg-secondary border border-border rounded-2xl cursor-default p-3">
+                                <span
+                                        class="flex items-center justify-center w-12 h-12 bg-background rounded-full text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                         class="w-5 h-5">
+                                        <path fill-rule="evenodd"
+                                              d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </span>
+                <div class="flex flex-col items-center justify-center text-center space-y-1">
+                    <span class="font-bold text-xs text-muted line-clamp-1">نوع دوره</span>
+                    {% if object.free %}
+                        <span class="font-bold text-sm text-foreground line-clamp-1">رایگان</span>
+                    {% else %}
+                        <span class="font-bold text-sm text-foreground line-clamp-1">نقدی</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div
+                    class="flex flex-col items-center justify-center gap-3 bg-secondary border border-border rounded-2xl cursor-default p-3">
+                                <span
+                                        class="flex items-center justify-center w-12 h-12 bg-background rounded-full text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                         class="w-5 h-5">
+                                        <path
+                                                d="M10 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM1.49 15.326a.78.78 0 0 1-.358-.442 3 3 0 0 1 4.308-3.516 6.484 6.484 0 0 0-1.905 3.959c-.023.222-.014.442.025.654a4.97 4.97 0 0 1-2.07-.655ZM16.44 15.98a4.97 4.97 0 0 0 2.07-.654.78.78 0 0 0 .357-.442 3 3 0 0 0-4.308-3.517 6.484 6.484 0 0 1 1.907 3.96 2.32 2.32 0 0 1-.026.654ZM18 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM5.304 16.19a.844.844 0 0 1-.277-.71 5 5 0 0 1 9.947 0 .843.843 0 0 1-.277.71A6.975 6.975 0 0 1 10 18a6.974 6.974 0 0 1-4.696-1.81Z">
+                                        </path>
+                                    </svg>
+                                </span>
+                <div class="flex flex-col items-center justify-center text-center space-y-1">
+                    <span class="font-bold text-xs text-muted line-clamp-1">شرکت‌کنندگان</span>
+                    <span class="font-bold text-sm text-foreground line-clamp-1">{{ total_users_count }} دانشجو</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-5">
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-1">
+                    <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                    <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                </div>
+                <div class="font-black text-sm text-foreground">مدرس دوره</div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                    <div class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
+                        <img src="{% static 'images/avatars/01.jpeg' %}" class="w-full h-full object-cover"
+                             alt="..."/>
+                    </div>
+                    <div class="flex flex-col items-start space-y-1">
+                        <a href="#"
+                           class="line-clamp-1 font-bold text-sm text-foreground hover:text-primary">
+                            {{ seriesmodel.author }}</a>
+                        <a href="#" class="line-clamp-1 font-semibold text-xs text-primary">دیدن
+                            رزومه</a>
+                    </div>
+                </div>
+                <div class="bg-secondary rounded-tl-3xl rounded-b-3xl text-sm text-muted p-5">
+                    {{ seriesmodel.author_description }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- end container -->
+</main>
+
+<!-- footer -->
+{% include 'includes/footer.html' %}
+<!-- end footer -->
+</div>
+
+
+<script src="{% static 'js/dependencies/alpinejs.min.js' %}"></script>
+<script src="{% static 'js/dependencies/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/dependencies/plyr.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>

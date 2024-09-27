@@ -1,0 +1,568 @@
+{% load static %}
+{% if request.user.is_authenticated %}
+    {% include 'includes/header_reference.html' %}
+    <body>
+
+    <div class="flex flex-col min-h-screen bg-background">
+        <!-- header -->
+        {% include 'includes/header.html' %}
+        <!-- end header -->
+
+        <main class="flex-auto py-5">
+            <div class="max-w-7xl space-y-14 px-4 mx-auto">
+                <div class="grid md:grid-cols-12 grid-cols-1 items-start gap-5">
+                    <div class="lg:col-span-3 md:col-span-4 md:sticky md:top-24">
+                        <!-- user:info -->
+                        <div class="flex items-center gap-5 mb-5">
+                            <div class="flex items-center gap-3">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
+                                    {% if request.user.profile_picture %}
+                                        <img src="{{ request.user.profile_picture.url }}"
+                                             class="w-full h-full object-cover"
+                                             alt="..."/>
+                                    {% else %}
+                                        <!-- You can add a default image or a placeholder here -->
+                                        <img src="{% static 'images/avatars/download.png' %}"
+                                             class="w-full h-full object-cover"
+                                             alt="..."/>
+                                    {% endif %}
+                                    alt="..."/>
+                                </div>
+                                <div class="flex flex-col items-start space-y-1">
+                                    <span class="text-xs text-muted">خوش آمدید</span>
+                                    <span class="line-clamp-1 font-semibold text-sm text-foreground cursor-default">
+                                      {{ request.user.fullname }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end user:info -->
+
+                        <!-- user:menus -->
+                        <ul class="flex flex-col space-y-3 bg-secondary rounded-2xl p-5">
+                            <li>
+                                <a href="{% url 'register:profile' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z"></path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">پیشخوان</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:profile_course' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">دوره ها</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:profile_notifications' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">اعلانات</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:profile_financial' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">مالی و اشتراک</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:profile_useredit' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"></path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">ویرایش پروفایل</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:profile_number_edit' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-primary rounded-full text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                         class="w-5 h-5">
+                                        <path fill-rule="evenodd"
+                                              d="M5.25 9a6.75 6.75 0 0 1 13.5 0v.75c0 2.123.8 4.057 2.118 5.52a.75.75 0 0 1-.297 1.206c-1.544.57-3.16.99-4.831 1.243a3.75 3.75 0 1 1-7.48 0 24.585 24.585 0 0 1-4.831-1.244.75.75 0 0 1-.298-1.205A8.217 8.217 0 0 0 5.25 9.75V9Zm4.502 8.9a2.25 2.25 0 1 0 4.496 0 25.057 25.057 0 0 1-4.496 0Z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">ویرایش شماره تماس</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:change_password' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">ویرایش رمز عبور</span>
+                                </a>
+                            </li>
+                            <li>
+                                <button type="button"
+                                        class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15">
+                                        </path>
+                                    </svg>
+                                    <a href="{% url 'register:logout' %}" class="font-semibold text-xs">خروج از حساب</a>
+                                </button>
+                            </li>
+                        </ul>                        <!-- end user:menus -->
+                    </div>
+                    <div class="lg:col-span-9 md:col-span-8">
+                        <div class="space-y-10">
+                            <div class="space-y-5">
+                                <!-- section:title -->
+                                <div class="flex items-center gap-3">
+                                    <div class="flex items-center gap-1">
+                                        <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                        <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                    </div>
+                                    <div class="font-black text-foreground">ویرایش شماره تلفن</div>
+                                </div>
+                                <!-- end section:title -->
+
+                                <!-- tabs container -->
+                                <div class="space-y-5" x-data="{ activeTab: 'tabOne'}">
+                                    <!-- tabs:list-container -->
+                                    <div class="relative overflow-x-auto">
+                                        <!-- tabs:list -->
+                                        <ul
+                                                class="inline-flex gap-2 bg-secondary border border-border rounded-full p-1">
+                                            <!-- tabs:list:item -->
+                                            <li>
+                                                <button type="button"
+                                                        class="flex items-center gap-x-2 w-full relative rounded-full py-2 px-4"
+                                                        x-bind:class="activeTab === 'tabOne' ? 'text-foreground bg-background' : 'text-muted'"
+                                                        x-on:click="activeTab = 'tabOne'">
+                                                    <!-- active icon -->
+                                                    <span x-show="activeTab === 'tabOne'">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                             fill="currentColor" class="w-5 h-5">
+                                                            <path
+                                                                    d="M16.7574 2.99677L9.29145 10.4627L9.29886 14.7098L13.537 14.7024L21 7.23941V19.9968C21 20.5491 20.5523 20.9968 20 20.9968H4C3.44772 20.9968 3 20.5491 3 19.9968V3.99677C3 3.44448 3.44772 2.99677 4 2.99677H16.7574ZM20.4853 2.09727L21.8995 3.51149L12.7071 12.7039L11.2954 12.7063L11.2929 11.2897L20.4853 2.09727Z">
+                                                            </path>
+                                                        </svg>
+                                                    </span><!-- end active icon -->
+
+                                                    <!-- inactive icon -->
+                                                    <span x-show="activeTab !== 'tabOne'">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                             fill="currentColor" class="w-5 h-5">
+                                                            <path
+                                                                    d="M16.7574 2.99677L14.7574 4.99677H5V18.9968H19V9.23941L21 7.23941V19.9968C21 20.5491 20.5523 20.9968 20 20.9968H4C3.44772 20.9968 3 20.5491 3 19.9968V3.99677C3 3.44448 3.44772 2.99677 4 2.99677H16.7574ZM20.4853 2.09727L21.8995 3.51149L12.7071 12.7039L11.2954 12.7063L11.2929 11.2897L20.4853 2.09727Z">
+                                                            </path>
+                                                        </svg>
+                                                    </span><!-- end inactive icon -->
+
+                                                    <span class="font-semibold text-sm whitespace-nowrap">اطلاعات
+                                                       حساب کاربری</span>
+                                                </button>
+                                            </li><!-- end tabs:list:item -->
+
+                                            <!-- tabs:list:item -->
+
+                                            <!-- tabs:list:item -->
+
+                                            <!-- tabs:list:item -->
+                                        </ul><!-- end tabs:list -->
+                                    </div><!-- end tabs:list-container -->
+                                    <!-- tabs:contents -->
+                                    <div class="bg-background rounded-3xl p-5">
+                                        <!-- tabs:contents:tabOne -->
+                                        <div class="space-y-5" x-show="activeTab === 'tabOne'">
+                                            <div class="flex items-center gap-3">
+                                                <div class="flex items-center gap-1">
+                                                    <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                                    <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                                </div>
+                                                <div class="font-black text-foreground">اطلاعات حساب</div>
+                                            </div>
+
+                                            {% if messages %}
+                                                <div class="notification-container">
+                                                    <ul class="messages space-y-2">
+                                                        {% for message in messages %}
+                                                            <li class="notification success">
+                                                                {{ message }}
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            {% endif %}
+
+                                            <form action="#" class="space-y-5" method="post" id="number-edit-form">
+                                                {% csrf_token %}
+                                                <div class="space-y-1 sm:w-1/2">
+                                                    <label for="phone_number"
+                                                           class="block font-medium text-xs text-muted">شماره تماس
+                                                        فعلی</label>
+                                                    <input type="text" dir="ltr" id="phone_number"
+                                                           class="form-input w-full h-11 bg-secondary border-border focus:border-border rounded-xl text-sm text-foreground disabled:text-muted px-5"
+                                                           value="{{ request.user.phone }}" disabled/>
+                                                </div>
+                                                <div class="space-y-1 sm:w-1/2">
+                                                    <label for="phone_number_new"
+                                                           class="block font-medium text-xs text-muted">شماره تماس
+                                                        جدید</label>
+                                                    {{ form.phone_number_new }}
+                                                    {% if form.phone_number_new.errors %}
+                                                        <div class="text-red-500 text-xs">{{ form.phone_number_new.errors|first }}</div>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="flex justify-end gap-5">
+                                                    <button type="submit"
+                                                            class="h-11 inline-flex items-center justify-center gap-3 bg-primary rounded-full text-white px-4 mr-auto">
+                                                        <span class="font-semibold text-sm">بروزرسانی</span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                             fill="currentColor" class="w-5 h-5">
+                                                            <path fill-rule="evenodd"
+                                                                  d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z"
+                                                                  clip-rule="evenodd"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </form>
+
+                                            <!-- Modal -->
+                                            <div id="confirmationModal"
+                                                 class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition-opacity duration-300 ease-out"
+                                                 aria-modal="true" role="dialog">
+                                                <div id="modalContent"
+                                                     class="bg-white rounded-lg p-6 space-y-4 text-center shadow-lg transform transition-transform duration-300 ease-out scale-95 opacity-0"
+                                                     aria-labelledby="modalTitle" aria-describedby="modalDescription">
+                                                    <h2 id="modalTitle" class="text-lg font-semibold text-gray-800">آیا
+                                                        مطمئن هستید که می‌خواهید شماره خود را تغییر دهید؟</h2>
+                                                    <p id="modalDescription" class="text-gray-600">لطفا شماره جدید خود
+                                                        را دوباره بررسی کنید:</p>
+                                                    <p id="confirmPhoneNumber"
+                                                       class="font-bold text-lg text-gray-800"></p>
+                                                    <div class="flex justify-center gap-4 pt-4">
+                                                        <button id="confirmBtn"
+                                                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition-transform duration-200 ease-in-out transform hover:scale-105">
+                                                            بله، تغییر بده
+                                                        </button>
+                                                        <button id="cancelBtn"
+                                                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-transform duration-200 ease-in-out transform hover:scale-105">
+                                                            خیر، بازگشت
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <script>
+                                                const modal = document.getElementById('confirmationModal');
+                                                const modalContent = document.getElementById('modalContent');
+
+                                                document.getElementById('number-edit-form').addEventListener('submit', function (event) {
+                                                    event.preventDefault();
+                                                    const newPhoneNumber = document.getElementById('id_phone_number_new').value;
+                                                    document.getElementById('confirmPhoneNumber').innerText = newPhoneNumber;
+
+                                                    // Show modal with animations
+                                                    modal.classList.remove('hidden');
+                                                    modalContent.classList.add('modal-slide-in');
+
+                                                    // Focus on the modal for accessibility
+                                                    modalContent.focus();
+                                                });
+
+                                                document.getElementById('confirmBtn').addEventListener('click', function () {
+                                                    document.getElementById('number-edit-form').submit();
+                                                });
+
+                                                document.getElementById('cancelBtn').addEventListener('click', function () {
+                                                    hideModal();
+                                                });
+
+                                                // Close modal on clicking outside or pressing Esc key
+                                                modal.addEventListener('click', (event) => {
+                                                    if (event.target === modal) {
+                                                        hideModal();
+                                                    }
+                                                });
+
+                                                document.addEventListener('keydown', (event) => {
+                                                    if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                                                        hideModal();
+                                                    }
+                                                });
+
+                                                function hideModal() {
+                                                    modalContent.classList.remove('modal-slide-in');
+                                                    modalContent.classList.add('modal-slide-out');
+                                                    setTimeout(() => {
+                                                        modal.classList.add('hidden');
+                                                        modalContent.classList.remove('modal-slide-out');
+                                                    }, 300);  // Wait for animation to complete before hiding
+                                                }
+                                            </script>
+
+                                            <style>
+                                                /* Keyframes for sliding in from the top */
+                                                @keyframes slideIn {
+                                                    from {
+                                                        opacity: 0;
+                                                        transform: translateY(-20px);
+                                                    }
+                                                    to {
+                                                        opacity: 1;
+                                                        transform: translateY(0);
+                                                    }
+                                                }
+
+                                                /* Keyframes for sliding out to the top */
+                                                @keyframes slideOut {
+                                                    from {
+                                                        opacity: 1;
+                                                        transform: translateY(0);
+                                                    }
+                                                    to {
+                                                        opacity: 0;
+                                                        transform: translateY(-20px);
+                                                    }
+                                                }
+
+                                                #confirmationModal {
+                                                    /* Basic styling for the modal overlay */
+                                                }
+
+                                                #modalContent {
+                                                    /* Additional styling for the modal content */
+                                                    animation-duration: 0.3s; /* Adjust duration to match JS animation duration */
+                                                    animation-fill-mode: both; /* Ensure styles persist after animation ends */
+                                                }
+
+                                                /* Animation styles */
+                                                .modal-slide-in {
+                                                    animation: slideIn 0.3s ease-out;
+                                                }
+
+                                                .modal-slide-out {
+                                                    animation: slideOut 0.3s ease-in;
+                                                }
+
+                                                /* Responsive styles */
+                                                #modalContent {
+                                                    max-width: 90%;
+                                                    margin: 0 20px;
+                                                }
+
+                                                @media (min-width: 640px) {
+                                                    #modalContent {
+                                                        max-width: 400px;
+                                                    }
+                                                }
+                                            </style>
+                                            <style>
+                                                .notification-container {
+                                                    position: fixed; /* Fixed positioning */
+                                                    top: 20px; /* Distance from the top */
+                                                    right: 20px; /* Distance from the right */
+                                                    z-index: 1000; /* Ensure it appears above other content */
+                                                    max-width: 300px; /* Limit the width of the notification container */
+                                                }
+
+                                                .notification {
+                                                    position: fixed; /* Fixed positioning for individual notifications */
+                                                    top: -100px; /* Initial position off-screen */
+                                                    right: 50%; /* Centered on screen */
+                                                    transform: translateX(50%); /* Adjust positioning */
+                                                    z-index: 9999; /* Ensure it appears above other content */
+                                                    width: auto; /* Auto width for notification */
+                                                    padding: 10px 30px; /* Padding */
+                                                    border-radius: 30px; /* Rounded corners */
+                                                    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow effect */
+                                                    background: rgb(255, 255, 255); /* White background */
+                                                    color: #000000; /* Black text color for visibility */
+                                                    font-weight: bold; /* Bold text */
+                                                    font-size: 16px; /* Font size */
+                                                    text-align: center; /* Center text */
+                                                    letter-spacing: 1px; /* Letter spacing */
+                                                    opacity: 1; /* Ensure it's visible initially */
+                                                    transition: opacity 0.5s ease-out, top 0.5s ease-out; /* Transition for fade out */
+                                                }
+
+                                                .notification.success {
+                                                    background-color: #bbdefb; /* Lighter blue background for success */
+                                                    border-left: 4px solid #0d47a1; /* Darker blue border */
+                                                    color: #0d47a1; /* Darker blue text color */
+                                                }
+                                            </style>
+
+                                            <script>
+                                                // Select all notification elements
+                                                const notifications = document.querySelectorAll('.notification');
+
+                                                notifications.forEach(notification => {
+                                                    // Set a timeout to slide down and then remove the notification after 3 seconds
+                                                    setTimeout(() => {
+                                                        notification.style.top = '20px'; // Move it down to the visible position
+                                                        setTimeout(() => {
+                                                            notification.style.opacity = '0'; // Fade out effect
+                                                            setTimeout(() => {
+                                                                notification.remove(); // Remove the notification from the DOM after fading out
+                                                            }, 500); // Wait for the fade-out effect to finish
+                                                        }, 2500); // Wait for 2.5 seconds before starting to fade out
+                                                    }, 100); // Delay slightly to allow initial positioning
+                                                });
+                                            </script>
+                                        </div><!-- end tabs:contents:tabOne -->
+
+                                    </div><!-- end tabs:contents:tabTwo -->
+
+
+                                    <!-- tabs:contents:tabTwo -->
+                                    <div class="space-y-5" x-show="activeTab === 'tabFour'">
+                                        <div class="flex items-center gap-3">
+                                            <div class="flex items-center gap-1">
+                                                <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                                <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                            </div>
+                                            <div class="font-black text-foreground">اطلاع رسانی</div>
+                                        </div>
+
+                                        <form action="#" class="space-y-5">
+                                            <div class="relative overflow-x-auto">
+                                                <table class="w-full text-sm text-right">
+                                                    <thead
+                                                            class="text-xs text-muted uppercase border-b border-border">
+                                                    <tr>
+                                                        <th class="p-5">عملیات</th>
+                                                        <th class="p-5">پیامک</th>
+                                                        <th class="p-5">ایمیل</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td class="p-5">
+                                                            <div class="font-medium text-sm text-muted">
+                                                                تایید دیدگاه
+                                                            </div>
+                                                        </td>
+                                                        <td class="p-5">
+                                                            <input type="checkbox"
+                                                                   class="form-checkbox w-6 h-6 !ring-0 !ring-offset-0 bg-border border-0 rounded-lg cursor-pointer"
+                                                                   checked/>
+                                                        </td>
+                                                        <td class="p-5">
+                                                            <input type="checkbox"
+                                                                   class="form-checkbox w-6 h-6 !ring-0 !ring-offset-0 bg-border border-0 rounded-lg cursor-pointer"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="p-5">
+                                                            <div class="font-medium text-sm text-muted">
+                                                                بروزرسانی دوره
+                                                            </div>
+                                                        </td>
+                                                        <td class="p-5">
+                                                            <input type="checkbox"
+                                                                   class="form-checkbox w-6 h-6 !ring-0 !ring-offset-0 bg-border border-0 rounded-lg cursor-pointer"
+                                                                   checked/>
+                                                        </td>
+                                                        <td class="p-5">
+                                                            <input type="checkbox"
+                                                                   class="form-checkbox w-6 h-6 !ring-0 !ring-offset-0 bg-border border-0 rounded-lg cursor-pointer"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="p-5">
+                                                            <div class="font-medium text-sm text-muted">
+                                                                ورود به سایت
+                                                            </div>
+                                                        </td>
+                                                        <td class="p-5">
+                                                            <input type="checkbox"
+                                                                   class="form-checkbox w-6 h-6 !ring-0 !ring-offset-0 bg-border border-0 rounded-lg cursor-pointer"/>
+                                                        </td>
+                                                        <td class="p-5">
+                                                            <input type="checkbox"
+                                                                   class="form-checkbox w-6 h-6 !ring-0 !ring-offset-0 bg-border border-0 rounded-lg cursor-pointer"
+                                                                   checked/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="p-5">
+                                                            <div class="font-medium text-sm text-muted">
+                                                                خرید دوره
+                                                            </div>
+                                                        </td>
+                                                        <td class="p-5">
+                                                            <input type="checkbox"
+                                                                   class="form-checkbox w-6 h-6 !ring-0 !ring-offset-0 bg-border border-0 rounded-lg cursor-pointer"/>
+                                                        </td>
+                                                        <td class="p-5">
+                                                            <input type="checkbox"
+                                                                   class="form-checkbox w-6 h-6 !ring-0 !ring-offset-0 bg-border border-0 rounded-lg cursor-pointer"
+                                                                   checked/>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="flex justify-end gap-5">
+                                                <button type="submit"
+                                                        class="h-11 inline-flex items-center justify-center gap-3 bg-primary rounded-full text-white px-4 mr-auto">
+                                                    <span class="font-semibold text-sm">بروزرسانی</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                         fill="currentColor" class="w-5 h-5">
+                                                        <path fill-rule="evenodd"
+                                                              d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z"
+                                                              clip-rule="evenodd"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div><!-- end tabs:contents:tabTwo -->
+                                </div><!-- end tabs:contents -->
+                            </div><!-- end tabs container -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </main>
+
+    <!-- footer -->
+    {% include 'includes/footer.html' %}
+    <!-- end footer -->
+    </div>
+
+
+    <script src="{% static 'js/dependencies/alpinejs.min.js' %}"></script>
+    <script src="{% static 'js/dependencies/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/dependencies/plyr.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    </body>
+
+    </html>
+{% endif %}
+
+

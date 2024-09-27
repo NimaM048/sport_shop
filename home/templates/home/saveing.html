@@ -1,0 +1,1888 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>اترنال</title>
+        <link rel="icon" href="{% static 'img/favicon.png' %}" sizes="16x16" />
+        <link rel="stylesheet" href="{% static 'libs/bootstrap/dist/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'libs/owl.carousel/dist/assets/owl.carousel.css' %}" />
+        <link rel="stylesheet" href="{% static 'libs/owl.carousel/dist/assets/owl.theme.default.css' %}" />
+        <link rel="stylesheet" href="{% static 'libs/remixicon/fonts/remixicon.css' %}" />
+        <link rel="stylesheet" href="{% static 'fonts/fonts.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/app.css' %}" />
+    </head>
+    <body>
+        <!--==================================
+            Loader Start Here
+    ===================================-->
+
+        <div class="Loader">
+            <div class="spinnerPairHolder">
+                <div class="spinnerPair">
+                    <div class="spinnerPairCercle"></div>
+                    <div class="spinnerPairCercle"></div>
+                </div>
+                <div class="spinnerPair">
+                    <div class="spinnerPairCercle"></div>
+                    <div class="spinnerPairCercle"></div>
+                </div>
+                <div class="spinnerPair">
+                    <div class="spinnerPairCercle"></div>
+                    <div class="spinnerPairCercle"></div>
+                </div>
+                <div class="spinnerPair">
+                    <div class="spinnerPairCercle"></div>
+                    <div class="spinnerPairCercle"></div>
+                </div>
+                <div class="spinnerPair">
+                    <div class="spinnerPairCercle"></div>
+                    <div class="spinnerPairCercle"></div>
+                </div>
+            </div>
+        </div>
+
+        <!--==================================
+            Loader End Here
+    ===================================-->
+
+        <!--==================================
+              Overlay Start Here
+    ===================================-->
+
+        <div class="overlay-content">
+            <div class="modal-content-inr">
+                <div class="logo-main">
+                    <div class="logo-otr">
+                        <a href="{% url 'home:home' %}" class="logo-a">
+                            <img class="logo-img" src="{% static 'img/brand-logo.png' %}" alt="نشان تجاری" />
+                        </a>
+                    </div>
+                    <div class="close-icon-otr">
+                        <i class="ri-close-line close-icon"></i>
+                    </div>
+                </div>
+                <div class="search-main">
+                    <input type="text" class="input heading-SB" placeholder="جستجو کردن" />
+                    <i class="ri-search-line search-icon"></i>
+                </div>
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingFour">
+                            <button class="accordion-button collapsed heading-h4" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                صفحه اصلی
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <ul class="linkk-ul">
+                                    <li class="linkk-li">
+                                        <a href="{% url 'home:home' %}" class="linkk-a heading-XSB">صفحه اصلی 1</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed heading-h4" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                کاوش کنید
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <ul class="linkk-ul">
+                                    <li class="linkk-li">
+                                        <a href="Pages/Explore-Artwork.html" class="linkk-a heading-XSB">کاوش آثار هنری</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/Single-Artwork.html" class="linkk-a heading-XSB">تک اثر هنری</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/Explore-Creator.html" class="linkk-a heading-XSB">کاوش طراح</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/Single-Creator.html" class="linkk-a heading-XSB">جزئیات طراح</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="linkk-otr">
+                        <a href="Pages/Activity.html" class="linkk-home heading-h4">فعالیت</a>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed heading-h4" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                صفحات
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <ul class="linkk-ul">
+                                    <li class="linkk-li">
+                                        <a href="Pages/About.html" class="linkk-a heading-XSB">درباره</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/Contact.html" class="linkk-a heading-XSB">مخاطب</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/How-It-Works.html" class="linkk-a heading-XSB">چطور کار میکند</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/Login.html" class="linkk-a heading-XSB">وارد شدن</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/Signup.html" class="linkk-a heading-XSB">ثبت نام</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/404.html" class="linkk-a heading-XSB">404</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/Privacy-policy.html" class="linkk-a heading-XSB">سیاست حفظ حریم خصوصی</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/Terms-of-services.html" class="linkk-a heading-XSB">شرایط استفاده از خدمات</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed heading-h4" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                انجمن
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <ul class="linkk-ul">
+                                    <li class="linkk-li">
+                                        <a href="Pages/Blog.html" class="linkk-a heading-XSB">وبلاگ</a>
+                                    </li>
+                                    <li class="linkk-li">
+                                        <a href="Pages/Faqs.html" class="linkk-a heading-XSB">سوالات متداول</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action">
+                    <a href="Pages/Upload.html" class="btn-primary-1 upload-btn heading-SB">بارگذاری</a>
+                </div>
+                <div class="social-icon">
+                    <h5 class="heading heading-h5">ما را دنبال کنید</h5>
+                    <ul class="icon-ul">
+                        <li class="icon-li">
+                            <a href="#" class="icon-a">
+                                <img class="icon" src="{% static 'img/social-icon1.svg' %}" alt="آیکون" />
+                            </a>
+                        </li>
+                        <li class="icon-li">
+                            <a href="#" class="icon-a">
+                                <img class="icon" src="{% static 'img/social-icon2.svg' %}" alt="آیکون" />
+                            </a>
+                        </li>
+                        <li class="icon-li">
+                            <a href="#" class="icon-a">
+                                <img class="icon" src="{% static 'img/social-icon3.svg' %}" alt="آیکون" />
+                            </a>
+                        </li>
+                        <li class="icon-li">
+                            <a href="#" class="icon-a">
+                                <img class="icon" src="{% static 'img/social-icon4.svg' %}" alt="آیکون" />
+                            </a>
+                        </li>
+                        <li class="icon-li">
+                            <a href="#" class="icon-a">
+                                <img class="icon" src="{% static 'img/social-icon5.svg' %}" alt="آیکون" />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p class="copy-right heading-S">کپی رایت © 2021 کلیه حقوق محفوظ است .</p>
+            </div>
+        </div>
+
+        <!--==================================
+            Overlay End Here
+    ===================================-->
+
+        <!--==================================
+            Hero Section Start Here
+    ===================================-->
+
+        <div class="hero2-main">
+            <div class="container-fluid">
+                <div class="navbar-main-2">
+                    <div class="wrapper">
+                        <div class="logo-otr">
+                            <a href="{% url 'home:home' %}" class="logo-a">
+                                <img class="logo-img" src="{% static 'img/brand-logo.png' %}" alt="نشان تجاری" />
+                            </a>
+                        </div>
+                        <div class="navigation-otr">
+                            <ul class="navigation-inr">
+                                <li class="navigation-li nav-li1">
+                                    <p class="nav-a heading-SB">صفحه اصلی</p>
+                                    <ul class="drop-down-ul">
+                                        <li class="drop-down-li">
+                                            <a href="index.html" class="drop-down-a heading-SB">صفحه اصلی 1</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="navigation-li nav-li2">
+                                    <p class="nav-a heading-SB">کاوش کنید</p>
+                                    <ul class="drop-down-ul">
+                                        <li class="drop-down-li">
+                                            <a href="Pages/Explore-Artwork.html" class="drop-down-a heading-SB">کاوش آثار هنری</a>
+                                        </li>
+                                        <li class="drop-down-li">
+                                            <a href="Pages/Single-Artwork.html" class="drop-down-a heading-SB">تک اثر هنری</a>
+                                        </li>
+                                        <li class="drop-down-li">
+                                            <a href="Pages/Explore-Creator.html" class="drop-down-a heading-SB">کاوش طراح</a>
+                                        </li>
+                                        <li class="drop-down-li">
+                                            <a href="Pages/Single-Creator.html" class="drop-down-a heading-SB">جزئیات طراح</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="navigation-li nav-li3">
+                                    <a href="Pages/Activity.html" class="nav-a heading-SB">فعالیت</a>
+                                </li>
+                                <li class="navigation-li nav-li6">
+                                    <p class="nav-a heading-SB">...</p>
+                                    <ul class="drop-down-ul">
+                                        <li class="drop-down-li">
+                                            <a href="Pages/About.html" class="drop-down-a heading-SB">درباره</a>
+                                        </li>
+                                        <li class="drop-down-li">
+                                            <a href="Pages/Contact.html" class="drop-down-a heading-SB">تماس</a>
+                                        </li>
+                                        <li class="drop-down-li">
+                                            <a href="Pages/How-It-Works.html" class="drop-down-a heading-SB">چطور کار میکند</a>
+                                        </li>
+                                        <li class="drop-down-li">
+                                            <a href="Pages/Blog.html" class="drop-down-a heading-SB">وبلاگ</a>
+                                        </li>
+                                        <li class="drop-down-li">
+                                            <a href="Pages/Faqs.html" class="drop-down-a heading-SB">سوالات متداول</a>
+                                        </li>
+                                        <li class="drop-down-li">
+                                            <p class="drop-down-a heading-SB">صفحات دیگر</p>
+                                            <ul class="drop-down-ul-other">
+                                                <li class="drop-down-li-other">
+                                                    <a href="Pages/Login.html" class="drop-down-a-other heading-SB">وارد شدن</a>
+                                                </li>
+                                                <li class="drop-down-li-other">
+                                                    <a href="Pages/Signup.html" class="drop-down-a-other heading-SB">ثبت نام</a>
+                                                </li>
+                                                <li class="drop-down-li-other">
+                                                    <a href="Pages/404.html" class="drop-down-a-other heading-SB">404</a>
+                                                </li>
+                                                <li class="drop-down-li-other">
+                                                    <a href="Pages/Privacy-policy.html" class="drop-down-a-other heading-SB">سیاست حفظ حریم خصوصی</a>
+                                                </li>
+                                                <li class="drop-down-li-other">
+                                                    <a href="Pages/Terms-of-services.html" class="drop-down-a-other heading-SB">شرایط خدمات</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="action-nav">
+                            <div class="search-main left-space">
+                                <input type="text" class="input heading-SB" placeholder="جستجو کردن" />
+                                <i class="ri-search-line search-icon"></i>
+                            </div>
+                            <div class="action left-space">
+                                <a href="Pages/Upload.html" class="btn-primary-1 heading-SB">بارگذاری</a>
+                            </div>
+                            <div class="notification-main left-space">
+                                <div class="icon-notification-otr">
+                                    <i class="ri-notification-2-line notification-icon"></i>
+                                    <span class="dot"></span>
+                                </div>
+                                <div class="notification-drop">
+                                    <div class="Heading-otr">
+                                        <p class="heading heading-LB">اطلاع</p>
+                                        <a href="#" class="linkk heading-SB">همه را ببین</a>
+                                    </div>
+                                    <ul class="notification-ul">
+                                        <li class="notification-li">
+                                            <a href="#" class="notification-a">
+                                                <div class="img-otr">
+                                                    <img class="img img-fluid" src="{% static 'img/cover-img1.png' %}" alt="اثر هنری" />
+                                                </div>
+                                                <div class="content-otr">
+                                                    <p class="name heading-SB">هنر انتزاعی</p>
+                                                    <p class="price heading-S">پیشنهاد جدید: 1.21 اتریوم</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="notification-li">
+                                            <a href="#" class="notification-a">
+                                                <div class="img-otr">
+                                                    <img class="img img-fluid" src="{% static 'img/cover-img2.png' %}" alt="اثر هنری" />
+                                                </div>
+                                                <div class="content-otr">
+                                                    <p class="name heading-SB">هنر انتزاعی چند رنگ</p>
+                                                    <p class="price heading-S">پیشنهاد جدید: 3.211 اتریوم</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="notification-li">
+                                            <a href="#" class="notification-a">
+                                                <div class="img-otr">
+                                                    <img class="img img-fluid" src="{% static 'img/cover-img3.png' %}" alt="اثر هنری" />
+                                                </div>
+                                                <div class="content-otr">
+                                                    <p class="name heading-SB">هنر چهره چند رنگ</p>
+                                                    <p class="price heading-S">پیشنهاد جدید: 8.100 اتریوم</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="notification-li">
+                                            <a href="#" class="notification-a">
+                                                <div class="img-otr">
+                                                    <img class="img img-fluid" src="{% static 'img/cover-img4.png' %}" alt="اثر هنری" />
+                                                </div>
+                                                <div class="content-otr">
+                                                    <p class="name heading-SB">صورت عالی پرچم</p>
+                                                    <p class="price heading-S">پیشنهاد جدید: 3.46 اتریوم</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="notification-li">
+                                            <a href="#" class="notification-a">
+                                                <div class="img-otr">
+                                                    <img class="img img-fluid" src="{% static 'img/cover-img6.png' %}" alt="اثر هنری" />
+                                                </div>
+                                                <div class="content-otr">
+                                                    <p class="name heading-SB">هنر انتزاعی</p>
+                                                    <p class="price heading-S">پیشنهاد جدید: 1.04 اتریوم</p>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="profile-nav-main">
+                                <div class="profile-nav">
+                                    <div class="img-otr">
+                                        <img class="nav-prof-img" src="{% static 'img/avatar-nav.png' %}" alt="آواتار" />
+                                    </div>
+                                    <p class="desc heading-S">3.756 اتریوم</p>
+                                </div>
+                                <div class="profile-pop-otr">
+                                    <div class="copy-icon-otr">
+                                        <p class="text heading-M">13b9ebda035r178 ...</p>
+                                        <i class="ri-file-copy-line copy-icon"></i>
+                                    </div>
+                                    <div class="balance-otr">
+                                        <div class="img-etherem">
+                                            <img class="etherem" src="{% static 'img/ethereum.png' %}" alt="img" />
+                                        </div>
+                                        <div class="balance">
+                                            <p class="text heading-S">تعادل</p>
+                                            <p class="price heading-L">3.756 اتریوم</p>
+                                        </div>
+                                    </div>
+                                    <ul class="link-profile-ul">
+                                        <li class="link-profile-li">
+                                            <a href="#" class="link-profile-a heading-M">مورد من</a>
+                                        </li>
+                                        <li class="link-profile-li">
+                                            <a href="#" class="link-profile-a heading-M">ویرایش نمایه</a>
+                                        </li>
+                                        <li class="link-profile-li">
+                                            <a href="#" class="link-profile-a heading-M">خروج</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="burger-icon-otr">
+                                <i class="ri-menu-4-line burger-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-custom">
+                    <div class="col-lg-5 col-content-otr">
+                        <div class="col-content-inr">
+                            <h1 class="heading heading-h1">آثار هنری کمیاب هنرمند درجه یک را کشف کنید</h1>
+                            <p class="desc heading-L">هر اثر هنری دیجیتالی در آپستید معتبر و واقعاً بی نظیر است. فناوری بلاک چین این نزدیکی جدید به مالکیت دیجیتال را ممکن می سازد.</p>
+                            <div class="action">
+                                <a href="Pages/Connect-Wallet.html" class="btn-primary-1 btn-hero heading-SB">اتصال کیف پول </a>
+                                <a href="Pages/Single-Artwork.html" class="btn-primary-2 btn-hero heading-SB">مشاهده اثر هنری</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img class="hero-img" src="{% static 'img/hero-img-home-2.jpg' %}" alt="img" />
+            </div>
+        </div>
+
+        <!--==================================
+            Hero Section End Here
+    ===================================-->
+
+        <!--==================================
+              Auction Start Here
+    ===================================-->
+
+        <div class="auction-main">
+            <div class="container-fluid">
+                <div class="wrapper">
+                    <h2 class="heading heading-h2">حراج زنده</h2>
+                </div>
+                <div class="row-auction owl-carousel owl-theme" id="live-auctions">
+                    <div class="col-otr">
+                        <div class="col-inr box-1">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img8.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart1">
+                                    <i class="ri-heart-line heart-icon2 heart-1"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">اتریوم در الماس</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-2">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img1.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart2">
+                                    <i class="ri-heart-line heart-icon2 heart-2"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">هنر انتزاعی</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-3">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img12.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart3">
+                                    <i class="ri-heart-line heart-icon2 heart-3"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">ماهی زیبا Koi Fish Art</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-4">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img9.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart4">
+                                    <i class="ri-heart-line heart-icon2 heart-4"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">سفینه فضایی هنر زیبا</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-5">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img10.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart5">
+                                    <i class="ri-heart-line heart-icon2 heart-5"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">اتریوم در الماس</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-6">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img14.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart6">
+                                    <i class="ri-heart-line heart-icon2 heart-6"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">اتریوم در الماس</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-7">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img1.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart7">
+                                    <i class="ri-heart-line heart-icon2 heart-7"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">اتریوم در الماس</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-8">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img7.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart8">
+                                    <i class="ri-heart-line heart-icon2 heart-8"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">اتریوم در الماس</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--==================================
+            Auction End Here
+    ===================================-->
+
+        <!--==================================
+              Creator Start Here
+    ===================================-->
+
+        <div class="creator-home2-main">
+            <div class="container-fluid">
+                <div class="wrapper">
+                    <h2 class="heading heading-h2">پدیدآورندگان ویژه</h2>
+                    <a href="Explore-Creator.html" class="view-all">
+                        <p class="view heading-SB">مشاهده همه طراحان</p>
+                        <i class="ri-arrow-left-line arrow-left"></i>
+                    </a>
+                </div>
+                <div class="row row-creator">
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-1">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-10.png' %}" alt="ایجاد کننده" />
+                                    <span class="check-icon-otr">
+                                        <i class="ri-check-line check-icon"></i>
+                                    </span>
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">وای ایجاد می کند</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-2">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-1.png' %}" alt="ایجاد کننده" />
+                                    <span class="check-icon-otr">
+                                        <i class="ri-check-line check-icon"></i>
+                                    </span>
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">متا رئیس</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-3">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-2.png' %}" alt="ایجاد کننده" />
+                                    <span class="check-icon-otr">
+                                        <i class="ri-check-line check-icon"></i>
+                                    </span>
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">عثمان آن</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-4">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-3.png' %}" alt="ایجاد کننده" />
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">رحمان ذول</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-5">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-4.png' %}" alt="ایجاد کننده" />
+                                    <span class="check-icon-otr">
+                                        <i class="ri-check-line check-icon"></i>
+                                    </span>
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">مهبانگ</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-6">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-5.png' %}" alt="ایجاد کننده" />
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">کاربر دیگر</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-7">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-6.png' %}" alt="ایجاد کننده" />
+                                    <span class="check-icon-otr">
+                                        <i class="ri-check-line check-icon"></i>
+                                    </span>
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">کرافتولد</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-8">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-7.png' %}" alt="ایجاد کننده" />
+                                    <span class="check-icon-otr">
+                                        <i class="ri-check-line check-icon"></i>
+                                    </span>
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">بیت های میو</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-9">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-8.png' %}" alt="ایجاد کننده" />
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">هنرمند جوان</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-10">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-9.png' %}" alt="ایجاد کننده" />
+                                    <span class="check-icon-otr">
+                                        <i class="ri-check-line check-icon"></i>
+                                    </span>
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">دینگ دونگ</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-11">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-1.png' %}" alt="ایجاد کننده" />
+                                    <span class="check-icon-otr">
+                                        <i class="ri-check-line check-icon"></i>
+                                    </span>
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">فانتزی اتریوم</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-4 col-sm-6 col-otr">
+                        <div class="col-inr box-12">
+                            <a href="Single-Creator.html" class="col-box">
+                                <div class="avtar-otr">
+                                    <img class="avatar" src="{% static 'img/avtar-10.png' %}" alt="ایجاد کننده" />
+                                </div>
+                                <div class="content-otr">
+                                    <p class="creator-name heading-MB-Mon">کینگ کونگ</p>
+                                    <p class="price heading-M">3.756 اتریوم</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive">
+                    <a href="Explore-Creator.html" class="view-all">
+                        <p class="view heading-SB">مشاهده همه طراحان</p>
+                        <i class="ri-arrow-left-line arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--==================================
+            Creator End Here
+    ===================================-->
+
+        <!--==================================
+        Feature Artwork Start Here
+    ===================================-->
+
+        <div class="feature-main">
+            <div class="container-fluid">
+                <div class="wrapper">
+                    <h2 class="heading heading-h2">آثار هنری ویژه</h2>
+                    <a href="Explore-Artwork.html" class="view-all">
+                        <p class="view heading-SB">مشاهده همه آثار هنری</p>
+                        <i class="ri-arrow-left-line arrow-left"></i>
+                    </a>
+                </div>
+                <div class="row row-custom">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-otr">
+                        <div class="col-inr box-1">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/avtar-4.png' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img14.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart1">
+                                    <i class="ri-heart-line heart-icon2 heart-1"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">اتریوم در الماس</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-otr">
+                        <div class="col-inr box-2">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img2.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart2">
+                                    <i class="ri-heart-line heart-icon2 heart-2"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">هنر انتزاعی چند رنگ</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-otr">
+                        <div class="col-inr box-3">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img3.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart3">
+                                    <i class="ri-heart-line heart-icon2 heart-3"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">نقاشی صورت چند رنگ</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-otr">
+                        <div class="col-inr box-4">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img4.png' %}" alt="اثر هنری" />
+                                </a>
+                                <span class="heart-icon-otr2 heart4">
+                                    <i class="ri-heart-line heart-icon2 heart-4"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">چهره با پرچم عالی</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-otr">
+                        <div class="col-inr box-5">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img5.png' %}" alt="اثر هنری" />
+                                </a>
+                                <span class="heart-icon-otr2 heart5">
+                                    <i class="ri-heart-line heart-icon2 heart-5"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">هنر انتزاعی چند رنگ</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-otr">
+                        <div class="col-inr box-6">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img10.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart6">
+                                    <i class="ri-heart-line heart-icon2 heart-6"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">اتریوم در الماس</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-otr">
+                        <div class="col-inr box-7">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img7.png' %}" alt="اثر هنری" />
+                                </a>
+                                <span class="heart-icon-otr2 heart7">
+                                    <i class="ri-heart-line heart-icon2 heart-7"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">عکاسی از دست</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-otr">
+                        <div class="col-inr box-8">
+                            <div class="avatar-main">
+                                <div class="profile-inr">
+                                    <a href="Single-Creator.html" class="img-otr img-1">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-1.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مجموعه: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-2">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-2.png' %}" alt="نماد" />
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">مالک: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                    <a href="Single-Creator.html" class="img-otr img-3">
+                                        <span class="img-inr">
+                                            <img class="avatar-img" src="{% static 'img/avtar-3.png' %}" alt="نماد" />
+                                        </span>
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                        <div class="hover">
+                                            <p class="text heading-S">پدیدآور: رحمان احمد</p>
+                                            <span class="box"></span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="list-icon-otr">
+                                    <img class="icon" src="{% static 'img/list-icon.svg' %}" alt="آیکون" />
+                                </div>
+                            </div>
+                            <div class="cover-img-otr">
+                                <a href="Single-Artwork.html">
+                                    <img class="cover-img" src="{% static 'img/cover-img6.png' %}" alt="اثر هنری" />
+                                </a>
+                                <div class="time-otr">
+                                    <span class="heading-SB timer" data-countdown="2022/01/01"></span>
+                                </div>
+                                <span class="heart-icon-otr2 heart8">
+                                    <i class="ri-heart-line heart-icon2 heart-8"></i>
+                                </span>
+                            </div>
+                            <a href="Single-Artwork.html" class="art-name heading-MB-Mon">هنر انتزاعی چند رنگ</a>
+                            <div class="bid-main">
+                                <p class="bid heading-S">پیشنهاد فعلی</p>
+                                <p class="Price heading-SB">2.43 اتریوم</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="responsive">
+                    <a href="Explore-Artwork.html" class="view-all">
+                        <p class="view heading-SB">مشاهده همه آثار هنری</p>
+                        <i class="ri-arrow-left-line arrow-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!--==================================
+        Feature Artwork End Here
+    ===================================-->
+
+        <!--==================================
+        Popular Collection Start Here
+    ===================================-->
+
+        <div class="collection-main">
+            <div class="container-fluid">
+                <div class="wrapper">
+                    <h2 class="heading heading-h2">مجموعه محبوب</h2>
+                </div>
+                <div class="row-collection owl-carousel owl-theme" id="popular-artwork">
+                    <div class="col-otr">
+                        <div class="col-inr box-1">
+                            <div class="img-otr">
+                                <img class="cover-img" src="{% static 'img/cover-img14.png' %}" alt="اثر هنری" />
+                            </div>
+                            <div class="creator-otr">
+                                <a href="Single-Creator.html" class="col-box">
+                                    <div class="avtar-otr">
+                                        <img class="avatar" src="{% static 'img/avtar-3.png' %}" alt="ایجاد کننده" />
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                    </div>
+                                    <div class="content-otr">
+                                        <p class="product heading-LB-Mon">عصبی های مغزی امروز</p>
+                                        <p class="creator-name heading-S">توسط <span class="name-inr heading-SB">جان دئو</span></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-2">
+                            <div class="img-otr">
+                                <img class="cover-img" src="{% static 'img/cover-img10.png' %}" alt="اثر هنری" />
+                            </div>
+                            <div class="creator-otr">
+                                <a href="Single-Creator.html" class="col-box">
+                                    <div class="avtar-otr">
+                                        <img class="avatar" src="{% static 'img/avtar-10.png' %}" alt="ایجاد کننده" />
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                    </div>
+                                    <div class="content-otr">
+                                        <p class="product heading-LB-Mon">عصبی های مغزی امروز</p>
+                                        <p class="creator-name heading-S">توسط <span class="name-inr heading-SB">جان دئو</span></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-3">
+                            <div class="img-otr">
+                                <img class="cover-img" src="{% static 'img/cover-img3.png' %}" alt="اثر هنری" />
+                            </div>
+                            <div class="creator-otr">
+                                <a href="Single-Creator.html" class="col-box">
+                                    <div class="avtar-otr">
+                                        <img class="avatar" src="{% static 'img/avtar-8.png' %}" alt="ایجاد کننده" />
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                    </div>
+                                    <div class="content-otr">
+                                        <p class="product heading-LB-Mon">عصبی های مغزی امروز</p>
+                                        <p class="creator-name heading-S">توسط <span class="name-inr heading-SB">جان دئو</span></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-4">
+                            <div class="img-otr">
+                                <img class="cover-img" src="{% static 'img/cover-img6.png' %}" alt="اثر هنری" />
+                            </div>
+                            <div class="creator-otr">
+                                <a href="Single-Creator.html" class="col-box">
+                                    <div class="avtar-otr">
+                                        <img class="avatar" src="{% static 'img/avtar-6.png' %}" alt="ایجاد کننده" />
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                    </div>
+                                    <div class="content-otr">
+                                        <p class="product heading-LB-Mon">عصبی های مغزی امروز</p>
+                                        <p class="creator-name heading-S">توسط <span class="name-inr heading-SB">جان دئو</span></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-5">
+                            <div class="img-otr">
+                                <img class="cover-img" src="{% static 'img/cover-img7.png' %}" alt="اثر هنری" />
+                            </div>
+                            <div class="creator-otr">
+                                <a href="Single-Creator.html" class="col-box">
+                                    <div class="avtar-otr">
+                                        <img class="avatar" src="{% static 'img/avtar-4.png' %}" alt="ایجاد کننده" />
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                    </div>
+                                    <div class="content-otr">
+                                        <p class="product heading-LB-Mon">عصبی های مغزی امروز</p>
+                                        <p class="creator-name heading-S">توسط <span class="name-inr heading-SB">جان دئو</span></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-otr">
+                        <div class="col-inr box-6">
+                            <div class="img-otr">
+                                <img class="cover-img" src="{% static 'img/cover-img11.png' %}" alt="اثر هنری" />
+                            </div>
+                            <div class="creator-otr">
+                                <a href="Single-Creator.html" class="col-box">
+                                    <div class="avtar-otr">
+                                        <img class="avatar" src="{% static 'img/avtar-2.png' %}" alt="ایجاد کننده" />
+                                        <span class="check-icon-otr">
+                                            <i class="ri-check-line check-icon"></i>
+                                        </span>
+                                    </div>
+                                    <div class="content-otr">
+                                        <p class="product heading-LB-Mon">عصبی های مغزی امروز</p>
+                                        <p class="creator-name heading-S">توسط <span class="name-inr heading-SB">جان دئو</span></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--==================================
+        Popular Collection End Here
+    ===================================-->
+
+        <!--==================================
+            Call to action Start Here
+    ===================================-->
+
+        <div class="cal-to-action-main">
+            <div class="container-fluid">
+                <div class="row row-custom">
+                    <div class="col-lg-6 col-content-otr">
+                        <div class="col-content-inr">
+                            <h2 class="heading heading-h2">
+                                ایجاد ، فروش و جمع آوری <br />
+                                NFT ها در <span class="heading-inr">اترنال</span>
+                            </h2>
+                            <p class="desc heading-M">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+                            <div class="btn-otr">
+                                <div class="action">
+                                    <a href="Pages/Upload.html" class="btn-primary-1 btn-action heading-SB">بارگذاری</a>
+                                </div>
+                                <div class="action">
+                                    <a href="Pages/Connect-Wallet.html" class="btn-primary-2 btn-action heading-SB">اتصال کیف پول</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img class="art-img" src="{% static 'img/call-to-action-img.png' %}" alt="art-img" />
+            </div>
+        </div>
+
+        <!--==================================
+            Call to action End Here
+    ===================================-->
+
+        <!--==================================
+            Footer Start Here
+    ===================================-->
+
+        <div class="footer-main">
+            <div class="container-fluid">
+                <div class="row row-custom">
+                    <div class="col-lg-3 col-md-6 col-logo-otr">
+                        <div class="col-logo-inr">
+                            <div class="logo-otr">
+                                <a href="{% url 'home:home' %}" class="logo-inr">
+                                    <img class="img-logo" src="{% static 'img/brand-logo.png' %}" alt="لوگو" />
+                                </a>
+                            </div>
+                            <div class="social-icon">
+                                <ul class="icon-ul">
+                                    <li class="icon-li">
+                                        <a href="#" class="icon-a">
+                                            <img class="icon" src="{% static 'img/social-icon1.svg' %}" alt="آیکون" />
+                                        </a>
+                                    </li>
+                                    <li class="icon-li">
+                                        <a href="#" class="icon-a">
+                                            <img class="icon" src="{% static 'img/social-icon2.svg' %}" alt="آیکون" />
+                                        </a>
+                                    </li>
+                                    <li class="icon-li">
+                                        <a href="#" class="icon-a">
+                                            <img class="icon" src="{% static 'img/social-icon3.svg' %}" alt="آیکون" />
+                                        </a>
+                                    </li>
+                                    <li class="icon-li">
+                                        <a href="#" class="icon-a">
+                                            <img class="icon" src="{% static 'img/social-icon4.svg' %}" alt="آیکون" />
+                                        </a>
+                                    </li>
+                                    <li class="icon-li">
+                                        <a href="#" class="icon-a">
+                                            <img class="icon" src="{% static 'img/social-icon5.svg' %}" alt="آیکون" />
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-explore-otr">
+                        <div class="col-explore-inr">
+                            <div class="explore-otr">
+                                <h4 class="heading heading-h4">کاوش کنید</h4>
+                                <ul class="explore-ul">
+                                    <li class="explore-li">
+                                        <a href="Pages/Explore-Artwork.html" class="explore-a heading-S">کاوش آثار هنری</a>
+                                    </li>
+                                    <li class="explore-li">
+                                        <a href="Pages/Single-Artwork.html" class="explore-a heading-S">تک اثر هنری</a>
+                                    </li>
+                                    <li class="explore-li">
+                                        <a href="Pages/Explore-Creator.html" class="explore-a heading-S">کاوش طراح</a>
+                                    </li>
+                                    <li class="explore-li">
+                                        <a href="Pages/Single-Creator.html" class="explore-a heading-S">جزئیات طراح</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="community-otr">
+                                <h4 class="heading heading-h4">انجمن</h4>
+                                <ul class="community-ul">
+                                    <li class="community-li">
+                                        <a href="Pages/Blog.html" class="community-a heading-S">وبلاگ</a>
+                                    </li>
+                                    <li class="community-li">
+                                        <a href="Pages/Faqs.html" class="community-a heading-S">سوالات متداول</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-navigation-otr">
+                        <div class="col-navigation-inr">
+                            <div class="navigation-otr">
+                                <h4 class="heading heading-h4">جهت یابی</h4>
+                                <ul class="navigation-ul">
+                                    <li class="navigation-li">
+                                        <a href="{% url 'home:home' %}" class="navigation-a heading-S">صفحه اصلی</a>
+                                    </li>
+                                    <li class="navigation-li">
+                                        <a href="Pages/Explore-Artwork.html" class="navigation-a heading-S">کاوش کنید</a>
+                                    </li>
+                                    <li class="navigation-li">
+                                        <a href="Pages/Activity.html" class="navigation-a heading-S">فعالیت</a>
+                                    </li>
+                                    <li class="navigation-li">
+                                        <a href="#" class="navigation-a heading-S">صفحات</a>
+                                    </li>
+                                    <li class="navigation-li">
+                                        <a href="#" class="navigation-a heading-S">انجمن</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-subscribe-otr">
+                        <div class="col-subscribe-inr">
+                            <h4 class="heading heading-h4">آخرین به روز رسانی ها را به صورت رایگان دریافت کنید</h4>
+                            <div class="email-otr">
+                                <input type="Email" class="input heading-SB" placeholder="آدرس ایمیل" />
+                            </div>
+                            <div class="action">
+                                <a href="#" class="btn-primary-1 heading-SB">ثبت نام در خبرنامه</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-main">
+            <div class="container-fluid">
+                <div class="wrapper">
+                    <p class="copy-right heading-S">کپی رایت © 2021 کلیه حقوق محفوظ است .</p>
+                    <div class="linkk-otr">
+                        <p class="linkk-inr"><a href="Pages/Privacy-policy.html" class="linkk-page heading-S">خط مشی رازداری</a> • <a href="Pages/Terms-of-services.html" class="linkk-page heading-S">شرایط خدمات</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--==================================
+            Footer End Here
+    ===================================-->
+
+        <script src="{% static 'libs/jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'libs/jquery.countdown/jquery.countdown.min.js' %}"></script>
+        <script src="{% static 'libs/owl.carousel/dist/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'js/app.js' %}"></script>
+    </body>
+</html>

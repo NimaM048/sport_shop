@@ -1,0 +1,57 @@
+{% load static %}
+<div class="lg:w-8/12 w-full lg:mx-auto">
+    <div class="grid sm:grid-cols-2 grid-cols-1 gap-x-5 gap-y-8 space-y-8">
+        {% for blog in blog %}
+
+            <div class="space-y-5">
+                <!-- article:card -->
+                <div class="relative bg-background rounded-xl p-4">
+                    <div class="relative mb-3 z-20">
+                        <a href="{% url 'home:article_detail' blog.slug %}" class="block">
+                            <img src="{{ blog.image.url }}"
+                                 class="max-w-full rounded-xl"
+                                 alt="..."/>
+                        </a>
+                    </div>
+                    <div class="relative space-y-3 z-10">
+                        <h2 class="font-bold text-sm">
+                            <a href="{% url 'home:article_detail' blog.slug %}"
+                               class="line-clamp-1 text-foreground transition-colors hover:text-primary">
+                                {{ blog.title }}</a>
+                        </h2>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-1">
+                                <div
+                                        class="flex-shrink-0 w-8 h-8 border border-white rounded-full overflow-hidden">
+                                    <img src="{{ blog.author_image.url }}"
+                                         class="w-full h-full object-cover"
+                                         alt="..."/>
+                                    <!-- You can add a default image or a placeholder here -->
+                                    class="w-full h-full object-cover" alt="...">
+                                </div>
+                                <a href="#"
+                                   class="line-clamp-1 font-bold text-xs text-foreground transition-colors hover:text-primary">
+                                    {{ blog.author }} </a>
+                            </div>
+                            <a href="{% url 'home:blog' %}"
+                               class="bg-primary/10 rounded-full text-primary transition-all hover:opacity-80 py-1 px-4">
+                                <span class="font-bold text-xxs">{{ blog.language_kinds }}</span>
+                            </a>
+                        </div>
+                        <div class="flex justify-end">
+                            <div class="flex items-center gap-1 text-muted">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                     class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                          d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                                </svg>
+                                <span class="font-semibold text-xs text-muted">زمان مطالعه:</span>
+                                <span class="font-semibold text-xs text-foreground">{{ blog.reading_time }} دقیقه</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end article:card -->
+            </div>
+        {% endfor %}

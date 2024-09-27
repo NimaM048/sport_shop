@@ -1,0 +1,338 @@
+{% load static %}
+{% if request.user.is_authenticated %}
+    {% include 'includes/header_reference.html' %}
+    <body>
+
+    <div class="flex flex-col min-h-screen bg-background">
+        <!-- header -->
+        {% include 'includes/header.html' %}
+        <!-- end header -->
+
+        <main class="flex-auto py-5">
+            <div class="max-w-7xl space-y-14 px-4 mx-auto">
+                <div class="grid md:grid-cols-12 grid-cols-1 items-start gap-5">
+                    <div class="lg:col-span-3 md:col-span-4 md:sticky md:top-24">
+                        <!-- user:info -->
+                        <div class="flex items-center gap-5 mb-5">
+                            <div class="flex items-center gap-3">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
+                                    {% if request.user.profile_picture %}
+                                        <img src="{{ request.user.profile_picture.url }}"
+                                             class="w-full h-full object-cover"
+                                             alt="..."/>
+                                    {% else %}
+                                        <!-- You can add a default image or a placeholder here -->
+                                        <img src="{% static 'images/avatars/download.png' %}"
+                                             class="w-full h-full object-cover"
+                                             alt="..."/>
+                                    {% endif %}
+                                </div>
+                                <div class="flex flex-col items-start space-y-1">
+                                    <span class="text-xs text-muted">خوش آمدید</span>
+                                    <span class="line-clamp-1 font-semibold text-sm text-foreground cursor-default">
+                                      {{ request.user.fullname }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end user:info -->
+
+                        <!-- user:menus -->
+                        <ul class="flex flex-col space-y-3 bg-secondary rounded-2xl p-5">
+                            <li>
+                                <a href="{% url 'register:profile' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">پیشخوان</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:profile_course' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">دوره ها</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:profile_notifications' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">اعلانات</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:profile_financial' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M21 12a2.25 2.25 0 0 0-2.25-2.25H15a3 3 0 1 1-6 0H5.25A2.25 2.25 0 0 0 3 12m18 0v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 9m18 0V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v3">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">مالی و اشتراک</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:profile_useredit' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-primary rounded-full text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                         class="w-5 h-5">
+                                        <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 0 0-1.032-.211 50.89 50.89 0 0 0-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 0 0 2.433 3.984L7.28 21.53A.75.75 0 0 1 6 21v-4.03a48.527 48.527 0 0 1-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979Z">
+                                        </path>
+                                        <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 0 0 1.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0 0 15.75 7.5Z">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">ویرایش پروفایل</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:profile_number_edit' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">ویرایش شماره تماس</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'register:change_password' %}"
+                                   class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125">
+                                        </path>
+                                    </svg>
+                                    <span class="font-semibold text-xs">ویرایش رمز عبور</span>
+                                </a>
+                            </li>
+                            <li>
+                                <button type="button"
+                                        class="w-full h-11 inline-flex items-center text-right gap-3 bg-background rounded-full text-muted transition-colors hover:bg-primary hover:text-primary-foreground px-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                              d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15">
+                                        </path>
+                                    </svg>
+                                    <a href="{% url 'register:logout' %}" class="font-semibold text-xs">خروج از حساب</a>
+                                </button>
+                            </li>
+                        </ul>                        <!-- end user:menus -->
+                    </div>
+                    <div class="lg:col-span-9 md:col-span-8">
+                        <div class="space-y-10">
+                            <div class="space-y-5">
+                                <!-- section:title -->
+                                <div class="flex items-center gap-3">
+                                    <div class="flex items-center gap-1">
+                                        <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                        <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                    </div>
+                                    <div class="font-black text-foreground">ویرایش پروفایل</div>
+                                </div>
+                                <!-- end section:title -->
+
+                                <!-- tabs container -->
+                                <div class="space-y-5" x-data="{ activeTab: 'tabOne'}">
+                                    <!-- tabs:list-container -->
+                                    <div class="relative overflow-x-auto">
+                                        <!-- tabs:list -->
+                                        <ul
+                                                class="inline-flex gap-2 bg-secondary border border-border rounded-full p-1">
+                                            <!-- tabs:list:item -->
+                                            <li>
+                                                <button type="button"
+                                                        class="flex items-center gap-x-2 w-full relative rounded-full py-2 px-4"
+                                                        x-bind:class="activeTab === 'tabOne' ? 'text-foreground bg-background' : 'text-muted'"
+                                                        x-on:click="activeTab = 'tabOne'">
+                                                    <!-- active icon -->
+                                                    <span x-show="activeTab === 'tabOne'">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                             fill="currentColor" class="w-5 h-5">
+                                                            <path
+                                                                    d="M16.7574 2.99677L9.29145 10.4627L9.29886 14.7098L13.537 14.7024L21 7.23941V19.9968C21 20.5491 20.5523 20.9968 20 20.9968H4C3.44772 20.9968 3 20.5491 3 19.9968V3.99677C3 3.44448 3.44772 2.99677 4 2.99677H16.7574ZM20.4853 2.09727L21.8995 3.51149L12.7071 12.7039L11.2954 12.7063L11.2929 11.2897L20.4853 2.09727Z">
+                                                            </path>
+                                                        </svg>
+                                                    </span><!-- end active icon -->
+
+                                                    <!-- inactive icon -->
+                                                    <span x-show="activeTab !== 'tabOne'">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                             fill="currentColor" class="w-5 h-5">
+                                                            <path
+                                                                    d="M16.7574 2.99677L14.7574 4.99677H5V18.9968H19V9.23941L21 7.23941V19.9968C21 20.5491 20.5523 20.9968 20 20.9968H4C3.44772 20.9968 3 20.5491 3 19.9968V3.99677C3 3.44448 3.44772 2.99677 4 2.99677H16.7574ZM20.4853 2.09727L21.8995 3.51149L12.7071 12.7039L11.2954 12.7063L11.2929 11.2897L20.4853 2.09727Z">
+                                                            </path>
+                                                        </svg>
+                                                    </span><!-- end inactive icon -->
+
+                                                    <span class="font-semibold text-sm whitespace-nowrap">اطلاعات
+                                                        کاربری</span>
+                                                </button>
+                                            </li><!-- end tabs:list:item -->
+
+                                            <!-- tabs:list:item -->
+
+                                            <!-- tabs:list:item -->
+
+                                            <!-- tabs:list:item -->
+                                        </ul><!-- end tabs:list -->
+                                    </div><!-- end tabs:list-container -->
+                                    <!-- tabs:contents -->
+                                    <div class="bg-background rounded-3xl p-5">
+                                        <!-- tabs:contents:tabOne -->
+                                        <div class="space-y-5" x-show="activeTab === 'tabOne'">
+                                            <div class="flex items-center gap-3">
+                                                <div class="flex items-center gap-1">
+                                                    <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                                    <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                                </div>
+                                                <div class="font-black text-foreground">اطلاعات حساب کاربری</div>
+                                            </div>
+                                            {% if messages %}
+                                                <div class="my-4">
+                                                    {% for message in messages %}
+                                                        <div class="flex items-center p-4 mb-4 text-sm text-red-500 bg-green-100 border-l-4 border-green-500 rounded-lg shadow-md transition-transform transform hover:scale-105"
+                                                             role="alert">
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                 class="h-5 w-5 mr-2 text-green-600" fill="none"
+                                                                 viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                      stroke-width="2" d="M12 4v8m0 4h.01"/>
+                                                            </svg>
+                                                            <span>{{ message }}</span>
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                            {% endif %}
+                                            <form action="#" class="space-y-5" method="post"
+                                                  enctype="multipart/form-data">
+                                                {% csrf_token %}
+
+                                                <div class="grid sm:grid-cols-2 gap-5">
+                                                    <div class="space-y-1">
+                                                        <label for="fullname" class="font-medium text-xs text-muted">نام
+                                                            و نام خانوادگی (فارسی)</label>
+                                                        {{ form.fullname }}
+                                                    </div>
+
+                                                    <div class="space-y-1">
+                                                        <label for="email"
+                                                               class="font-medium text-xs text-muted">ایمیل</label>
+                                                        {{ form.email }}
+                                                        <div class="font-medium text-xs text-muted">
+                                                            {{ form.errors.email }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex items-center gap-3">
+                                                    <div class="flex items-center gap-1">
+                                                        <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                                        <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                                    </div>
+                                                    <div class="font-black text-foreground">اطلاعات فردی</div>
+                                                </div>
+
+                                                <div class="space-y-1">
+                                                    <label for="bio" class="font-medium text-xs text-muted">درباره
+                                                        من</label>
+                                                    {{ form.biography }}
+                                                </div>
+
+                                                <div class="space-y-1">
+                                                    <label for="profile_picture" class="font-medium text-xs text-muted">عکس
+                                                        پروفایل</label>
+                                                    {{ form.profile_picture }}
+                                                </div>
+
+                                                <div class="flex flex-col gap-5">
+                                                    <div class="flex items-center gap-3">
+                                                        <div class="flex items-center gap-1">
+                                                            <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                                            <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                                        </div>
+                                                        <div class="font-black text-foreground">راه های ارتباطی</div>
+                                                    </div>
+
+                                                    <div class="grid sm:grid-cols-2 gap-5">
+                                                        <div class="space-y-1">
+                                                            <label for="website" class="font-medium text-xs text-muted">وبسایت</label>
+                                                            {{ form.web_site }}
+                                                        </div>
+                                                        <div class="space-y-1">
+                                                            <label for="github" class="font-medium text-xs text-muted">گیت
+                                                                هاب</label>
+                                                            {{ form.github }}
+                                                        </div>
+                                                        <div class="space-y-1">
+                                                            <label for="linkedin"
+                                                                   class="font-medium text-xs text-muted">لینکدین</label>
+                                                            {{ form.linkdin }}
+                                                        </div>
+                                                        <div class="space-y-1">
+                                                            <label for="telegram"
+                                                                   class="font-medium text-xs text-muted">تلگرام</label>
+                                                            {{ form.telegram }}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="flex justify-end gap-5">
+                                                        <button type="submit"
+                                                                class="h-11 inline-flex items-center justify-center gap-3 bg-primary rounded-full text-white px-4 mr-auto">
+                                                            <span class="font-semibold text-sm">بروزرسانی</span>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                                 fill="currentColor" class="w-5 h-5">
+                                                                <path fill-rule="evenodd"
+                                                                      d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z"
+                                                                      clip-rule="evenodd"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div><!-- end tabs:contents:tabOne -->
+
+                                    </div><!-- end tabs:contents:tabTwo -->
+                                </div><!-- end tabs:contents -->
+                            </div><!-- end tabs container -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </main>
+
+    <!-- footer -->
+    {% include 'includes/footer.html' %}
+    <!-- end footer -->
+    </div>
+
+
+    <script src="{% static 'js/dependencies/alpinejs.min.js' %}"></script>
+    <script src="{% static 'js/dependencies/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/dependencies/plyr.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    </body>
+
+    </html>
+{% endif %}
+
+

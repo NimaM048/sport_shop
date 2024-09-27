@@ -1,0 +1,48 @@
+{% load static %}
+{% include 'includes/header_reference.html' %}
+<body>
+
+{% include 'includes/header.html' %}
+<!-- end mega menu -->
+
+<!-- start content -->
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="content-box">
+            <div class="container-fluid">
+                <br>
+                <div class="page-404">
+                    <h2 style="font-size: 18px; font-weight: bold; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);"
+                        class="font-semibold text-sm text-center border-primary bg-danger text-green-500 p-2 rounded">
+                         پرداخت شما موفق بود</h2>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="text-center">
+                    <a href="{% url 'register:profile_course' %}"
+                       class=" h-11 inline-flex items-center justify-center gap-1 bg-primary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4">دوره های من
+                      </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end content -->
+
+
+<!-- start footer -->
+
+{% include 'includes/footer.html' %}
+
+<script src="{% static 'js/dependencies/alpinejs.min.js' %}"></script>
+<script src="{% static 'js/dependencies/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/dependencies/plyr.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,479 @@
+{% load static %}
+{% load my_tags %}
+{% include 'includes/header_reference.html' %}
+
+<body>
+
+<div class="flex flex-col min-h-screen bg-background">
+    <!-- header -->
+    {% include 'includes/header.html' %}
+    <!-- end header -->
+
+    <main class="flex-auto py-5">
+        <!-- container -->
+        <div class="max-w-7xl space-y-14 px-4 mx-auto">
+            <div class="flex md:flex-nowrap flex-wrap items-start gap-5">
+                <div class="md:w-8/12 w-full">
+                    <div class="relative">
+                        <div class="relative z-10">
+                            <!-- course:thumbnail -->
+                            <div>
+                                <img src="{{ seriesmodel.image.url }}" class="max-w-full rounded-3xl"
+                                     alt="..."/>
+                            </div>
+                            <!-- end course:thumbnail -->
+                        </div>
+                        <div class="-mt-12 pt-12">
+                            <div
+                                    class="bg-gradient-to-b from-background to-secondary rounded-b-3xl space-y-2 p-5 mx-5">
+                                <!-- course:status -->
+                                <div class="flex items-center gap-2">
+                                    <span class="block w-1 h-1 bg-success rounded-full"></span>
+                                    {% if item.is_compeleted %}
+                                        <span class="font-bold text-xs text-success">تکمیل شده</span>
+                                    {% else %}
+                                        <span class="font-bold text-xs text-red-500">تکمیل نشده</span>
+                                    {% endif %}
+                                </div>
+
+                                <!-- course:title -->
+                                <h1 class="font-bold text-xl text-foreground">{{ seriesmodel.title }}</h1>
+
+                                <!-- course:excerpt -->
+                                <p class="text-sm text-muted">
+                                    {{ seriesmodel.description }}
+                                </p>
+                            </div>
+                            <div class="space-y-10 py-5">
+                                <div class="grid lg:grid-cols-4 grid-cols-2 gap-5">
+                                    <div
+                                            class="flex flex-col items-center justify-center gap-3 bg-secondary border border-border rounded-2xl cursor-default p-3">
+                                            <span
+                                                    class="flex items-center justify-center w-12 h-12 bg-background rounded-full text-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                     fill="currentColor" class="w-5 h-5">
+                                                    <path fill-rule="evenodd"
+                                                          d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z"
+                                                          clip-rule="evenodd"></path>
+                                                </svg>
+                                            </span>
+                                        {% calculate_episodes_and_duration object as episode_data %}
+                                        <div
+                                                class="flex flex-col items-center justify-center text-center space-y-1">
+                                            <span class="font-bold text-xs text-muted line-clamp-1">مدت دوره</span>
+                                            <span
+                                                    class="font-bold text-sm text-foreground line-clamp-1">{{ episode_data.total_duration }}</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="flex flex-col items-center justify-center gap-3 bg-secondary border border-border rounded-2xl cursor-default p-3">
+                                            <span
+                                                    class="flex items-center justify-center w-12 h-12 bg-background rounded-full text-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                     fill="currentColor" class="w-5 h-5">
+                                                    <path fill-rule="evenodd"
+                                                          d="M4.25 2A2.25 2.25 0 0 0 2 4.25v2.5A2.25 2.25 0 0 0 4.25 9h2.5A2.25 2.25 0 0 0 9 6.75v-2.5A2.25 2.25 0 0 0 6.75 2h-2.5Zm0 9A2.25 2.25 0 0 0 2 13.25v2.5A2.25 2.25 0 0 0 4.25 18h2.5A2.25 2.25 0 0 0 9 15.75v-2.5A2.25 2.25 0 0 0 6.75 11h-2.5Zm9-9A2.25 2.25 0 0 0 11 4.25v2.5A2.25 2.25 0 0 0 13.25 9h2.5A2.25 2.25 0 0 0 18 6.75v-2.5A2.25 2.25 0 0 0 15.75 2h-2.5Zm0 9A2.25 2.25 0 0 0 11 13.25v2.5A2.25 2.25 0 0 0 13.25 18h2.5A2.25 2.25 0 0 0 18 15.75v-2.5A2.25 2.25 0 0 0 15.75 11h-2.5Z"
+                                                          clip-rule="evenodd"></path>
+                                                </svg>
+                                            </span>
+                                        <div
+                                                class="flex flex-col items-center justify-center text-center space-y-1">
+                                                <span class="font-bold text-xs text-muted line-clamp-1">تعداد
+                                                    جلسات</span>
+                                            <span class="font-bold text-sm text-foreground line-clamp-1">{{ episode_data.total_episodes }}</span>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="flex flex-col items-center justify-center gap-3 bg-secondary border border-border rounded-2xl cursor-default p-3">
+                                            <span
+                                                    class="flex items-center justify-center w-12 h-12 bg-background rounded-full text-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                     fill="currentColor" class="w-5 h-5">
+                                                    <path fill-rule="evenodd"
+                                                          d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z"
+                                                          clip-rule="evenodd"></path>
+                                                </svg>
+                                            </span>
+                                        <div class="flex flex-col items-center justify-center text-center space-y-1">
+                                            <span class="font-bold text-xs text-muted line-clamp-1">نوع دوره</span>
+                                            {% if object.free %}
+                                                <span class="font-bold text-sm text-foreground line-clamp-1">رایگان</span>
+                                            {% else %}
+                                                <span class="font-bold text-sm text-foreground line-clamp-1">نقدی</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="flex flex-col items-center justify-center gap-3 bg-secondary border border-border rounded-2xl cursor-default p-3">
+                                            <span
+                                                    class="flex items-center justify-center w-12 h-12 bg-background rounded-full text-primary">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                                     fill="currentColor" class="w-5 h-5">
+                                                    <path
+                                                            d="M10 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM1.49 15.326a.78.78 0 0 1-.358-.442 3 3 0 0 1 4.308-3.516 6.484 6.484 0 0 0-1.905 3.959c-.023.222-.014.442.025.654a4.97 4.97 0 0 1-2.07-.655ZM16.44 15.98a4.97 4.97 0 0 0 2.07-.654.78.78 0 0 0 .357-.442 3 3 0 0 0-4.308-3.517 6.484 6.484 0 0 1 1.907 3.96 2.32 2.32 0 0 1-.026.654ZM18 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM5.304 16.19a.844.844 0 0 1-.277-.71 5 5 0 0 1 9.947 0 .843.843 0 0 1-.277.71A6.975 6.975 0 0 1 10 18a6.974 6.974 0 0 1-4.696-1.81Z">
+                                                    </path>
+                                                </svg>
+                                            </span>
+                                        <div
+                                                class="flex flex-col items-center justify-center text-center space-y-1">
+                                                <span
+                                                        class="font-bold text-xs text-muted line-clamp-1">شرکت‌کنندگان</span>
+                                            <span class="font-bold text-sm text-foreground line-clamp-1">{{ total_users_count }}
+                                                    دانشجو</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- tabs container -->
+                                <div class="space-y-5"
+                                     x-data="{ activeTab: 'tabOne', scroll: function() { document.getElementById(this.activeTab).scrollIntoView({ behavior: 'smooth' }) } }">
+                                    <div class="sticky top-24 z-10">
+                                        <!-- tabs:list-container -->
+                                        <div class="relative overflow-x-auto">
+                                            <!-- tabs:list -->
+                                            <ul
+                                                    class="inline-flex gap-2 bg-secondary border border-border rounded-full p-1">
+                                                <!-- tabs:list:item -->
+                                                <li>
+                                                    <button type="button"
+                                                            class="flex items-center gap-x-2 relative rounded-full py-2 px-4"
+                                                            x-bind:class="activeTab === 'tabOne' ? 'text-foreground bg-background' : 'text-muted'"
+                                                            x-on:click="activeTab = 'tabOne'; scroll();">
+                                                        <!-- active icon -->
+                                                        <span x-show="activeTab === 'tabOne'">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     viewBox="0 0 20 20" fill="currentColor"
+                                                                     class="w-5 h-5">
+                                                                    <path
+                                                                            d="M2.695 14.763l-1.262 3.154a.5.5 0 00.65.65l3.155-1.262a4 4 0 001.343-.885L17.5 5.5a2.121 2.121 0 00-3-3L3.58 13.42a4 4 0 00-.885 1.343z">
+                                                                    </path>
+                                                                </svg>
+                                                            </span><!-- end active icon -->
+
+                                                        <!-- inactive icon -->
+                                                        <span x-show="activeTab !== 'tabOne'">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                     viewBox="0 0 24 24" stroke-width="1.5"
+                                                                     stroke="currentColor" class="w-5 h-5">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                          d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125">
+                                                                    </path>
+                                                                </svg>
+                                                            </span><!-- end inactive icon -->
+
+                                                        <span
+                                                                class="font-semibold text-sm whitespace-nowrap">معرفی</span>
+                                                    </button>
+                                                </li><!-- end tabs:list:item -->
+
+                                                <!-- tabs:list:item -->
+                                                <li>
+                                                    <button type="button"
+                                                            class="flex items-center gap-x-2 relative rounded-full py-2 px-4"
+                                                            x-bind:class="activeTab === 'tabTwo' ? 'text-foreground bg-background' : 'text-muted'"
+                                                            x-on:click="activeTab = 'tabTwo'; scroll();">
+                                                        <!-- active icon -->
+                                                        <span x-show="activeTab === 'tabTwo'">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                     viewBox="0 0 20 20" fill="currentColor"
+                                                                     class="w-5 h-5">
+                                                                    <path fill-rule="evenodd"
+                                                                          d="M6 4.75A.75.75 0 016.75 4h10.5a.75.75 0 010 1.5H6.75A.75.75 0 016 4.75zM6 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75A.75.75 0 016 10zm0 5.25a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H6.75a.75.75 0 01-.75-.75zM1.99 4.75a1 1 0 011-1H3a1 1 0 011 1v.01a1 1 0 01-1 1h-.01a1 1 0 01-1-1v-.01zM1.99 15.25a1 1 0 011-1H3a1 1 0 011 1v.01a1 1 0 01-1 1h-.01a1 1 0 01-1-1v-.01zM1.99 10a1 1 0 011-1H3a1 1 0 011 1v.01a1 1 0 01-1 1h-.01a1 1 0 01-1-1V10z"
+                                                                          clip-rule="evenodd"></path>
+                                                                </svg>
+                                                            </span><!-- end active icon -->
+
+                                                        <!-- inactive icon -->
+                                                        <span x-show="activeTab !== 'tabTwo'">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                     viewBox="0 0 24 24" stroke-width="1.5"
+                                                                     stroke="currentColor" class="w-5 h-5">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                                          d="M8.25 6.75h12M8.25 12h12m-12 5.25h12M3.75 6.75h.007v.008H3.75V6.75zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zM3.75 12h.007v.008H3.75V12zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm-.375 5.25h.007v.008H3.75v-.008zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z">
+                                                                    </path>
+                                                                </svg>
+                                                            </span><!-- end inactive icon -->
+
+
+                                                        <span class="font-semibold text-sm whitespace-nowrap">دیدگاه
+                                                                و پرسش</span>
+                                                    </button>
+                                                </li><!-- end tabs:list:item -->
+                                            </ul><!-- end tabs:list -->
+                                        </div><!-- end tabs:list-container -->
+                                    </div>
+
+                                    <!-- tabs:contents -->
+                                    <div class="space-y-8">
+                                        <!-- tabs:contents:tabOne -->
+                                        <div class="bg-background rounded-3xl p-5" id="tabOne">
+                                            <div class="flex items-center gap-3 mb-5">
+                                                <div class="flex items-center gap-1">
+                                                    <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                                    <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                                </div>
+                                                <div class="font-black text-foreground">معرفی دوره</div>
+                                            </div>
+
+                                            <!-- course:description -->
+                                            <div class="description">
+                                                <p>
+                                                    {{ seriesmodel.introdution_course }}
+                                                </p>
+                                                <h2>{{ seriesmodel.title }}</h2>
+                                                <img src="{{ seriesmodel.image.url }}" alt="..."/>
+                                                <p>
+                                                    {{ seriesmodel.course_extra_des1 }}
+                                                </p>
+                                                <p>
+                                                    {{ seriesmodel.course_extra_des2 }}
+                                                </p>
+                                                <h3>ساختار {{ seriesmodel.title }}</h3>
+                                                <p>
+                                                    {{ seriesmodel.built_in }}
+                                                </p>
+                                            </div>
+                                            <!-- end course:description -->
+                                        </div><!-- end tabs:contents:tabOne -->
+
+                                        <!-- tabs:contents:tabTwo -->
+                                        <div class="bg-background rounded-3xl p-5" id="tabTwo">
+                                            <!-- section:title -->
+                                            <div class="flex flex-col space-y-3">
+                                                <!-- course:section:accordion -->
+                                                <div class="w-full" x-data="{ open: true }">
+                                                    <!-- accordion:button -->
+                                                    <!-- end accordion:button -->
+
+                                                    <!-- accordion:content -->
+                                                    <div class="flex flex-col relative py-3 sm:pr-8 sm:pl-16"
+                                                         x-show="open">
+                                                        <!-- course:section:episodes:wrapper -->
+                                                        <div class="space-y-1">
+                                                            <!-- episode -->
+                                                            <!-- end episode -->
+                                                        </div>
+                                                        <!-- end course:section:episodes:wrapper -->
+                                                    </div>
+                                                    <!-- end accordion:content -->
+                                                </div>
+                                                <!-- end course:sections:accordion -->
+
+                                                <!-- course:section:accordion -->
+                                                <div class="w-full" x-data="{ open: false }">
+                                                    <!-- accordion:button -->
+
+                                                    <!-- accordion:content -->
+                                                    <div class="flex flex-col relative py-3 sm:pr-8 sm:pl-16"
+                                                         x-show="open">
+                                                        <!-- course:section:episodes wrapper -->
+                                                        <div class="space-y-1">
+                                                            <!-- episode -->
+                                                            <!-- end episode -->
+
+                                                            <!-- episode -->
+                                                            <!-- end episode -->
+
+                                                            <!-- episode -->
+                                                            <!-- end episode -->
+
+                                                        </div>
+                                                        <!-- end course:section:episodes wrapper -->
+                                                    </div><!-- end accordion:content -->
+                                                </div>
+                                                <!-- end course:section:accordion -->
+                                            </div>
+                                            <!-- end course:sections:wrapper -->
+                                        </div>
+                                        <!-- end tabs:contents:tabTwo -->
+
+                                        <!-- tabs:contents:tabThree -->
+                                        {% include 'includes/comment.html' %}
+                                        <!-- end tabs:contents:tabThree -->
+                                    </div>
+                                    <!-- end tabs:contents -->
+                                </div>
+                                <!-- end tabs container -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-4/12 w-full md:sticky md:top-24 space-y-8">
+                    <!-- course:registering -->
+                    {% if  seriesmodel.free == True %}
+                        <div class="bg-gradient-to-b from-secondary to-background rounded-2xl px-5 pb-5">
+                            <div class="bg-background rounded-b-3xl space-y-2 p-5 mb-5">
+                                <div class="flex items-center gap-3">
+                                    <div class="flex items-center gap-1">
+                                        <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                        <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                    </div>
+                                    <div class="font-black text-foreground">نام نویسی در دوره</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between gap-5">
+                                <span class="font-bold text-base text-muted">هزینه ثبت نام:</span>
+                                <div class="flex flex-col items-end justify-center h-14">
+                                    <div class="flex items-center gap-1">
+                                        <span class="font-black text-xl text-success">رایگان</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <form action="{% url 'register:add_course_to_profile' seriesmodel.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit"
+                                        class="w-full h-11 inline-flex items-center justify-center gap-1 bg-primary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4">
+                                    <span class="font-semibold text-sm">شروع یادگیری</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                         class="w-5 h-5">
+                                        <path fill-rule="evenodd"
+                                              d="M14.78 14.78a.75.75 0 0 1-1.06 0L6.5 7.56v5.69a.75.75 0 0 1-1.5 0v-7.5A.75.75 0 0 1 5.75 5h7.5a.75.75 0 0 1 0 1.5H7.56l7.22 7.22a.75.75 0 0 1 0 1.06Z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    {% elif show_start_learning %}
+                        <div class="bg-gradient-to-b from-secondary to-background rounded-2xl px-5 pb-5">
+                            <div class="bg-background rounded-b-3xl space-y-2 p-5 mb-5">
+                                <div class="flex items-center gap-3">
+                                    <div class="flex items-center gap-1">
+                                        <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                        <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                    </div>
+                                    <div class="font-black text-foreground">نام نویسی در دوره</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between gap-5">
+                                <span class="font-bold text-base text-muted">هزینه ثبت نام:</span>
+                                <div class="flex flex-col items-end justify-center h-14">
+                                    <div class="flex items-center gap-1">
+                                        <span class="font-black text-xl text-success">خریداری شده</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 mt-3">
+                                <a href="{% url 'home:series_episod' seriesmodel.id %}" type="submit"
+                                   class="w-full h-11 inline-flex items-center justify-center gap-1 bg-primary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4">
+                                    <span class="font-semibold text-sm">شروع یادگیری</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                         class="w-5 h-5">
+                                        <path fill-rule="evenodd"
+                                              d="M14.78 14.78a.75.75 0 0 1-1.06 0L6.5 7.56v5.69a.75.75 0 0 1-1.5 0v-7.5A.75.75 0 0 1 5.75 5h7.5a.75.75 0 0 1 0 1.5H7.56l7.22 7.22a.75.75 0 0 1 0 1.06Z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+
+
+                    {% else %}
+                        <div class="bg-gradient-to-b from-secondary to-background rounded-2xl px-5 pb-5">
+                        <div class="bg-background rounded-b-3xl space-y-2 p-5 mb-5">
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                    <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                </div>
+                                <div class="font-black text-foreground">نام نویسی در دوره</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between gap-5">
+                            <span class="font-bold text-base text-muted">هزینه ثبت نام:</span>
+                            <div class="flex flex-col items-end justify-center h-14">
+                                {% if seriesmodel.main_price %}
+                                    <span class="line-through text-muted">{{ seriesmodel.main_price }}</span>
+                                    <div class="flex items-center gap-1">
+                                        <span class="font-black text-xl text-foreground">{{ seriesmodel.discount_price }}</span>
+                                        <span class="text-xs text-muted">تومان</span>
+                                    </div>
+                                {% else %}
+                                    <div class="flex items-center gap-1">
+                                        <span class="font-black text-xl text-foreground">{{ seriesmodel.discount_price }}</span>
+                                        <span class="text-xs text-muted">تومان</span>
+                                    </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        <form action="{% url 'cart:cart_add' seriesmodel.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="flex gap-3 mt-3">
+                                <button type="submit"
+                                        class="w-full h-11 inline-flex items-center justify-center gap-1 bg-primary rounded-full text-primary-foreground transition-all hover:opacity-80 px-4">
+                                    <span class="font-semibold text-sm">اضافه به سبد</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                         class="w-5 h-5">
+                                        <path fill-rule="evenodd"
+                                              d="M14.78 14.78a.75.75 0 0 1-1.06 0L6.5 7.56v5.69a.75.75 0 0 1-1.5 0v-7.5A.75.75 0 0 1 5.75 5h7.5a.75.75 0 0 1 0 1.5H7.56l7.22 7.22a.75.75 0 0 1 0 1.06Z"
+                                              clip-rule="evenodd"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+
+                        {% if messages %}
+                            <div class="relative z-10">
+                                {% for message in messages %}
+                                    <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg" role="alert">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+
+                    <!-- end course:registering -->
+
+                    <!-- course:lecturer -->
+                    <div class="space-y-5">
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-1">
+                                <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                            </div>
+                            <div class="font-black text-sm text-foreground">مدرس دوره</div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-full overflow-hidden">
+                                    <img src="{% static 'images/avatars/01.jpeg' %}" class="w-full h-full object-cover"
+                                         alt="..."/>
+                                </div>
+                                <div class="flex flex-col items-start space-y-1">
+                                    <a href="#"
+                                       class="line-clamp-1 font-bold text-sm text-foreground hover:text-primary">
+                                        {{ seriesmodel.author }}</a>
+                                    <a href="#" class="line-clamp-1 font-semibold text-xs text-primary">دیدن
+                                        رزومه</a>
+                                </div>
+                            </div>
+                            <div class="bg-secondary rounded-tl-3xl rounded-b-3xl text-sm text-muted p-5">
+                                {{ seriesmodel.author_description }}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end course:lecturer -->
+                    </div>
+                </div>
+            </div>
+            <!-- end container -->
+    </main>
+
+    <!-- footer -->
+    {% include 'includes/footer.html' %}
+
+
+    <!-- end footer -->
+</div>
+
+
+<script src="{% static 'js/dependencies/alpinejs.min.js' %}"></script>
+<script src="{% static 'js/dependencies/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/dependencies/plyr.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,162 @@
+{% load static %}
+{% include 'includes/header_reference.html' %}
+<body>
+
+<div class="flex flex-col min-h-screen bg-background">
+    <!-- header -->
+    {% include 'includes/header.html' %}
+    <!-- end header -->
+
+    <main class="flex-auto py-5">
+        <!-- container -->
+        <div class="max-w-7xl space-y-14 px-4 mx-auto">
+            <!-- section:title -->
+            <div class="flex flex-col items-start space-y-2">
+                <h2 class="font-black text-2xl text-foreground">تمـــــاس باما</h2>
+                <p class="font-semibold text-sm text-muted">در این صفحه میتوانید اطلاعات ارتباطی ایگوفیت را مشاهده
+                    کنید.</p>
+            </div>
+            <!-- end section:title -->
+
+            <div class="grid md:grid-cols-12 gap-8">
+                <div class="md:col-span-7 space-y-8">
+                    <div class="space-y-5">
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-1">
+                                <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                            </div>
+                            <div class="font-black text-foreground">شبکه های اجتماعی</div>
+                        </div>
+                        <ul class="flex flex-wrap items-center gap-5">
+                            {% if footer.social_media %}
+                                {% if footer.social_media.telegram %}
+                                    <a href="{{ footer.social_media.telegram }}" target="_blank">
+                                    <i class="fab fa-telegram social-media-icon"></i> تلگرام
+                                    <br>
+                                    <a href="{{ footer.social_media.youtube }}" target="_blank">
+                                        <i class="fab fa-youtube social-media-icon"></i> یوتیوب
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="space-y-5">
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-1">
+                                <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                            </div>
+                            <div class="font-black text-foreground">شماره تماس</div>
+                        </div>
+                        <a href="tel: 021-123-45678"
+                           class="inline-flex font-bold text-base text-foreground transition-colors hover:text-primary"
+                           dir="ltr">{{ footer.phone_number }}</a>
+                    </div>
+                    <div class="space-y-5">
+                        <div class="flex items-center gap-3">
+                            <div class="flex items-center gap-1">
+                                <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                            </div>
+                            <div class="font-black text-foreground">آدرس</div>
+                        </div>
+                        <span
+                                class="inline-flex font-bold text-base text-foreground transition-colors hover:text-primary">
+                                {{ footer.address }}
+                            </span>
+                    </div>
+                </div>
+
+                <div class="md:col-span-5">
+                    <!-- contact-us:form:wrapper -->
+                    <div class="bg-gradient-to-b from-secondary to-background rounded-2xl px-5 pb-5">
+                        <!-- contact-us:title -->
+                        <div class="bg-background rounded-b-3xl space-y-2 p-5 mb-5">
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-1">
+                                    <div class="w-1 h-1 bg-foreground rounded-full"></div>
+                                    <div class="w-2 h-2 bg-foreground rounded-full"></div>
+                                </div>
+                                <div class="font-black text-foreground">فرم تماس باما</div>
+                            </div>
+                        </div>
+                        <!-- end contact-us:title -->
+
+                        <!-- contact-us:form -->
+                        {% if messages %}
+                            <div class="alert alert-success text-red-500">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}                            <!-- end contact-us:form -->
+
+                        <form action="#" class="space-y-5" method="post">
+                            {% csrf_token %}
+                            <div class="space-y-1">
+                                <label for="fullname" class="font-medium text-xs text-muted">نام
+                                    و
+                                    نام خانوادگی (فارسی)</label>
+                                {{ form.name }}
+                            </div>
+                            <div class="space-y-1">
+                                <label for="email" class="font-medium text-xs text-muted">ایمیل</label>
+                                {{ form.email }}
+                            </div>
+                            <div class="space-y-1">
+                                <label for="email" class="font-medium text-xs text-muted">شماره تلفن</label>
+                                {{ form.phone }}
+                            </div>
+                            <div class="space-y-1">
+                                <label for="text" class="font-medium text-xs text-muted">متن پیــــام</label>
+                                {{ form.comment }}
+                            </div>
+                            <div class="flex justify-end gap-5">
+                                <button type="submit"
+                                        class="h-11 inline-flex items-center justify-center bg-primary rounded-full text-white px-8 mr-auto">
+                                    <span class="font-semibold text-sm">ارسال پیـــام</span>
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <style>
+                        /* CSS for error message animations */
+                        @keyframes slideIn {
+                            from {
+                                transform: translateY(-10px);
+                                opacity: 0;
+                            }
+                            to {
+                                transform: translateY(0);
+                                opacity: 1;
+                            }
+                        }
+
+                        .alert {
+                            animation: slideIn 0.5s ease-out;
+                        }
+
+                    </style>
+                    <!-- end contact-us:form:wrapper -->
+                </div>
+            </div>
+        </div>
+        <!-- end container -->
+    </main>
+
+
+    <!-- footer -->
+    {% include 'includes/footer.html' %}
+    <!-- end footer -->
+</div>
+
+
+<script src="{% static 'js/dependencies/alpinejs.min.js' %}"></script>
+<script src="{% static 'js/dependencies/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/dependencies/plyr.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>

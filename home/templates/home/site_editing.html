@@ -1,0 +1,37 @@
+{% load static %}
+{% include 'includes/header_reference.html' %}
+<body>
+
+    <div class="flex flex-col min-h-screen bg-background">
+        <!-- header -->
+        <!-- end header -->
+
+        <main class="flex-auto py-5">
+            <div>
+                <div class="max-w-7xl space-y-14 px-4 mx-auto">
+                    <div class="flex flex-col items-center justify-center space-y-12">
+                        <img src="{% static 'images/theme/empty.svg' %}" class="w-full max-w-xs opacity-35" alt="..." />
+                        <div class="text-center space-y-3">
+                            <h2 class="font-bold text-xl text-foreground">
+                                سایت در حال بروزرسانی است..
+                            </h2>
+                        </div>
+                    </div>
+
+                    <!-- section:latest-courses -->
+            </div>
+        </main>
+
+
+        <!-- footer -->
+        <!-- end footer -->
+    </div>
+
+
+    <script src='{% static 'js/dependencies/alpinejs.min.js' %}'></script>
+    <script src="{% static 'js/dependencies/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/dependencies/plyr.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+
+</html>
