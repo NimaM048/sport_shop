@@ -21,7 +21,7 @@ from account.models import Otp, User, UserSession, Notification
 from cart.models import OrderItem, Order
 from home.models import SeriesModel, UserCourse
 
-SMS = ghasedakpack.Ghasedak("449b0c736047db369720dc24a2fbea59178da5123627d6eae4279dd142aeb10")
+SMS = ghasedakpack.Ghasedak("")
 
 
 class Register(View):
