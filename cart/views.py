@@ -50,7 +50,7 @@ class CartAddView(View):
         product = get_object_or_404(SeriesModel, id=pk)
         cart = Cart(request)
 
-        # Check if the user has already purchased the course
+      
         if OrderItem.objects.filter(order__user=request.user, order__is_paid=True, product=product).exists():
             return redirect('home:series_episod', pk=pk)
 
@@ -184,8 +184,8 @@ class VerifyView(View):
         order = Order.objects.get(id=str(order_id))
         print(order.id)
 
-        # Initialize the SMS sender
-        sms_sender = ghasedakpack.Ghasedak("449b0c736047db369720dc24a2fbea59178da5123627d6eae4279dd142aeb109")
+       
+        sms_sender = ghasedakpack.Ghasedak("")
         thank_you_message = "Thank you for your purchase! Your order ID is: {}".format(order.id)
 
         def verify(authority):
@@ -205,7 +205,7 @@ class VerifyView(View):
                 response = response.json()
                 if response['Status'] == 100:
                     # Send SMS after successful payment
-                    user_phone = request.user.phone  # Assuming user has phone attribute
+                    user_phone = request.user.phone 
                     sms_sender.verification({
                         'receptor': user_phone,
                         'type': '1',
@@ -240,7 +240,7 @@ class VerifyView(View):
 # # Important: need to edit for realy server.
 # CallbackURL = 'http://localhost:8000/account/profile_courses'
 
-# pay = ZarinPal(merchant='c1bd626d-83bf-45b6-8b35-629a16250cdf', call_back_url="http://localhost:8000/cart/verify/")
+# pay = ZarinPal(merchant='', call_back_url="http://localhost:8000/cart/verify/")
 #
 #
 # @login_required
