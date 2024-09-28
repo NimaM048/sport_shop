@@ -64,7 +64,7 @@ class CheckOtpView(View):
                 expiration_time = otp.created_at + timedelta(minutes=5)
 
                 from django.utils import timezone
-                if timezone.now() <= expiration_time:  # Check if the OTP has expired
+                if timezone.now() <= expiration_time:  
                     user, is_created = User.objects.get_or_create(phone=otp.phone)
                     login(request, user)
                     otp.delete()  # Delete OTP after successful login
@@ -73,10 +73,10 @@ class CheckOtpView(View):
 
                     return redirect('home:home')
                 else:
-                    form.add_error('code', 'کد OTP منقضی شده است.')  # OTP has expired error
+                    form.add_error('code', 'کد OTP منقضی شده است.') 
 
             except Otp.DoesNotExist:
-                form.add_error('code', 'کد وارد شده نادرست است.')  # Invalid OTP code error
+                form.add_error('code', 'کد وارد شده نادرست است.') 
 
         return render(request, 'account/verification.html', context={'form': form})
 
@@ -93,14 +93,14 @@ class ProfileView(TemplateView):
         context = super(ProfileView, self).get_context_data(**kwargs)
         user = self.request.user  # Get the currently logged-in user
 
-        # Retrieve series that the user has ordered and for which payment has been completed
+       
         paid_series = SeriesModel.objects.filter(
             order_items__order__is_paid=True,
             order_items__order__user=user
         ).distinct()
 
-        context['items'] = paid_series  # Add the retrieved series to the context
-        context['learning_courses_count'] = paid_series.count()  # Add the count of courses to the context
+        context['items'] = paid_series 
+        context['learning_courses_count'] = paid_series.count() 
         return context
 
 
@@ -112,18 +112,18 @@ class ProfileCoursesView(TemplateView):
         context = super(ProfileCoursesView, self).get_context_data(**kwargs)
         user = self.request.user  # Get the currently logged-in user
 
-        # Retrieve series that the user has ordered and for which payment has been completed
+        
         paid_series = SeriesModel.objects.filter(
             order_items__order__is_paid=True,  # Use the correct related name 'order_items'
             order_items__order__user=user
         ).distinct()
 
-        # Retrieve series that the user has added to their profile (free courses)
+        
         free_series = SeriesModel.objects.filter(series_users__user=user, free=True).distinct()
         # Combine paid and free series into a single list
         all_series = paid_series | free_series
 
-        context['items'] = all_series  # Add the retrieved series to the context
+        context['items'] = all_series  
         return context
 
 
@@ -203,17 +203,17 @@ def signup(request):
             password = form.cleaned_data['password']
             fullname = form.cleaned_data['fullname']
 
-            # Check if a user with the same fullname already exists
+            
             if User.objects.filter(fullname=fullname).exists():
                 messages.error(request, 'نام کاربری وارد شده قبلا ثبت شده است.')
                 return render(request, 'account/pass_register.html', {'form': form})
 
             # Create a new user
             user = User(phone=phone, fullname=fullname)
-            user.set_password(password)  # Hash the password
+            user.set_password(password) 
             user.save()
             login(request, user)  # Login the newly created user
-            return redirect(reverse_lazy('home:home'))  # Redirect to home page after successful signup
+            return redirect(reverse_lazy('home:home')) 
         # Add success message
         messages.success(request, "با موفقیت وارد شدید")
 
@@ -251,7 +251,7 @@ def login_view(request):
                 UserSession.objects.create(user=user, session_key=session_key, ip_address=ip_address,
                                            user_agent=user_agent)
 
-                # Add success message
+                
                 messages.success(request, "با موفقیت وارد شدید")
 
                 return redirect('home:home')
