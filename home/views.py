@@ -45,7 +45,7 @@ def comment_view(request):
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if handle_form_submission(form, request):
-            return redirect('home:contact_us')  # Replace 'success_url' with the URL to redirect to.
+            return redirect('home:contact_us') 
     else:
         form = CommentForm()
 
@@ -101,7 +101,7 @@ class SeriesView(ListView):
         context['course'] = queryset  # Use `object_list` instead of 'free'
         context['free_courses_count'] = free_courses_count
         context['not_free_courses_count'] = not_free_courses_count
-        context['categories'] = Category.objects.all()  # Assuming you have a model for categories
+        context['categories'] = Category.objects.all() 
         return context
 
 
@@ -122,7 +122,7 @@ class ArticleDetailView(DetailView):
         # Efficiently get only the current article
         context['current_article'] = self.object
 
-        # Get a related article or similar articles for suggestions (if needed)
+        
         context['related_articles'] = ArticleBlogModel.objects.exclude(id=self.object.id).all()
 
         return context
@@ -173,19 +173,19 @@ class CourseDetailView(DetailView):
             product=self.get_object()
         ).values_list('order__user', flat=True).distinct().count()
 
-        # Count distinct users who have added the course to their profile
+        
         added_users_count = UserCourse.objects.filter(series=self.get_object()).values_list('user',
                                                                                             flat=True).distinct().count()
 
-        # Total users count, adding 50 to the sum
+        
         total_users_count = purchased_users_count + added_users_count + 50
 
-        # Pass the counts to the context
+        
         context['purchased_users_count'] = purchased_users_count
         context['added_users_count'] = added_users_count
         context['total_users_count'] = total_users_count
 
-        # Filter active comments and their replies
+        
         active_comments = self.get_object().comments.filter(is_active=True)
         for comment in active_comments:
             comment.active_replies = comment.reply_set.filter(is_active=True)
@@ -230,11 +230,11 @@ class BlogView(TemplateView):
         queryset = ArticleBlogModel.objects.all()
         categories = CategoryBlog.objects.all()  # Fetch all categories
 
-        # Apply category filter
+     
         if category:
             queryset = queryset.filter(language_kinds__title__icontains=category)
 
-        # Check if the filtered queryset is empty
+     
         if not queryset.exists():
             messages.warning(request, "هیچ مقاله‌ای برای فیلترهای انتخاب شده پیدا نشد، لطفاً گزینه‌های دیگری را امتحان کنید.")
 
@@ -292,14 +292,14 @@ class SeriesEpisodeDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         series = self.get_object()
 
-        # Fetch all seasons for this series
+       
         seasons = series.seasons.all()
 
-        # Initialize totals
+       
         total_duration_seconds = 0
         total_episodes_count = 0
 
-        # Calculate total duration and number of episodes
+       
         for season in seasons:
             total_duration_seconds += season.total_duration_seconds()
             total_episodes_count += season.number_of_episodes()
@@ -307,15 +307,15 @@ class SeriesEpisodeDetailView(DetailView):
         # Convert total duration seconds to formatted duration
         total_duration_formatted = self.format_duration(total_duration_seconds)
 
-        # Pass the seasons and total values to the template context
+       
         context['seasons'] = seasons
         context['total_duration'] = total_duration_formatted
         context['total_episodes'] = total_episodes_count
 
-        # Add comment section context data
+       
         context['series_object'] = series
 
-        # Filter active comments and their replies
+        
         active_comments = series.comments.filter(is_active=True)
         for comment in active_comments:
             comment.active_replies = comment.reply_set.filter(is_active=True)
@@ -323,19 +323,18 @@ class SeriesEpisodeDetailView(DetailView):
         context['active_comments'] = active_comments
         context['reply_form'] = ReplyForm()
 
-        # Check for user purchase
+       
         user = self.request.user
         context['show_start_learning'] = user.is_authenticated and OrderItem.objects.filter(
             order__user=user, order__is_paid=True,
             product=series).exists()
 
-        # Count distinct users who have purchased the series
         purchased_users_count = OrderItem.objects.filter(
             order__is_paid=True,
             product=series
         ).values_list('order__user', flat=True).distinct().count()
 
-        # Count distinct users who have added the series to their profile
+       
         added_users_count = UserCourse.objects.filter(series=series).values_list('user', flat=True).distinct().count()
 
         # Total users count, including 50 extra users
